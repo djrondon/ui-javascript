@@ -1,4 +1,4 @@
-# ui-javascript-style-guide
+# front-end-javascript-style-guide
 
 ## License
 
