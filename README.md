@@ -929,13 +929,13 @@ Other style guides:
     ```javascript
     const luke = {
       jedi: true,
-      age: 28,
+      age: 28
     };
 
-    // bad
+    // Bad.
     const isJedi = luke['jedi'];
 
-    // good
+    // Good.
     const isJedi = luke.jedi;
     ```
 
@@ -944,7 +944,7 @@ Other style guides:
     ```javascript
     const luke = {
       jedi: true,
-      age: 28,
+      age: 28
     };
 
     function getProp(prop) {
@@ -954,18 +954,17 @@ Other style guides:
     const isJedi = getProp('jedi');
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Variables
 
-  - [13.1](#13.1) <a name='13.1'></a> Always use `const` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
+  - [13.1](#13.1) <a name='13.1'></a> Always use `const` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace.
 
     ```javascript
-    // bad
+    // Bad.
     superPower = new SuperPower();
 
-    // good
+    // Good.
     const superPower = new SuperPower();
     ```
 
@@ -974,18 +973,20 @@ Other style guides:
     > Why? It's easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs.
 
     ```javascript
-    // bad
+    // Bad.
     const items = getItems(),
         goSportsTeam = true,
         dragonball = 'z';
 
-    // bad
-    // (compare to above, and try to spot the mistake)
+    // Bad.
+    
+    // Compare to above, and try to spot the mistake.
     const items = getItems(),
         goSportsTeam = true;
         dragonball = 'z';
 
-    // good
+    // Good.
+    
     const items = getItems();
     const goSportsTeam = true;
     const dragonball = 'z';
