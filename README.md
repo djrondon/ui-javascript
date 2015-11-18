@@ -89,11 +89,13 @@ Other style guides:
   > Why? This ensures that you can't reassign your references, which can lead to bugs and difficult to comprehend code.
 
     ```javascript
-    // Bad
+    // Bad.
+    
     var a = 1;
     var b = 2;
 
-    // Good
+    // Good.
+    
     const a = 1;
     const b = 2;
     ```
@@ -103,7 +105,7 @@ Other style guides:
   > Why? `let` is block-scoped rather than function-scoped like `var`.
 
     ```javascript
-    // Bad
+    // Bad.
     
     var count = 1;
     
@@ -141,23 +143,23 @@ Other style guides:
   - [3.1](#3.1) <a name='3.1'></a> Use the literal syntax for object creation.
 
     ```javascript
-    // Bad
+    // Bad.
     const item = new Object();
 
-    // Good
+    // Good.
     const item = {};
     ```
 
   - [3.2](#3.2) <a name='3.2'></a> If your code will be executed in browsers in script context, don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61). It’s OK to use them in ES6 modules and server-side code.
 
     ```javascript
-    // Bad
+    // Bad.
     const superman = {
       default: {clark: 'kent'},
       private: true,
     };
 
-    // Good
+    // Good.
     const superman = {
       defaults: {clark: 'kent'},
       hidden: true,
@@ -167,13 +169,13 @@ Other style guides:
   - [3.3](#3.3) <a name='3.3'></a> Use readable synonyms in place of reserved words.
 
     ```javascript
-    // Bad
+    // Bad.
     const superman = {class: 'alien'};
 
-    // Bad
+    // Bad.
     const superman = {klass: 'alien'};
 
-    // Good
+    // Good.
     const superman = {type: 'alien'};
     ```
 
@@ -187,7 +189,7 @@ Other style guides:
       return `a key named ${k}`;
     }
 
-    // Bad
+    // Bad.
     
     const obj = {
       id: 5,
@@ -195,7 +197,7 @@ Other style guides:
     };
     obj[getKey('enabled')] = true;
 
-    // Good
+    // Good.
     
     const obj = {
       id: 5,
@@ -208,7 +210,7 @@ Other style guides:
   - [3.5](#3.5) <a name='3.5'></a> Use object method shorthand.
 
     ```javascript
-    // Bad
+    // Bad.
     const atom = {
       value: 1,
       addValue: function(value) {
@@ -216,7 +218,7 @@ Other style guides:
       }
     };
 
-    // Good
+    // Good.
     const atom = {
       value: 1,
       addValue(value) {
@@ -233,15 +235,11 @@ Other style guides:
     ```javascript
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
-    const obj = {
-      lukeSkywalker: lukeSkywalker,
-    };
+    // Bad.
+    const obj = {lukeSkywalker: lukeSkywalker};
 
-    // good
-    const obj = {
-      lukeSkywalker,
-    };
+    // Good.
+    const obj = {lukeSkywalker};
     ```
 
   - [3.7](#3.7) <a name='3.7'></a> Group your shorthand properties at the beginning of your object declaration.
@@ -252,38 +250,38 @@ Other style guides:
     const anakinSkywalker = 'Anakin Skywalker';
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // Bad.
     const obj = {
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
       lukeSkywalker,
       episodeThree: 3,
       mayTheFourth: 4,
-      anakinSkywalker,
+      anakinSkywalker
     };
 
-    // good
+    // Good.
     const obj = {
       lukeSkywalker,
       anakinSkywalker,
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
       episodeThree: 3,
-      mayTheFourth: 4,
+      mayTheFourth: 4
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## Arrays
 
   - [4.1](#4.1) <a name='4.1'></a> Use the literal syntax for array creation.
 
     ```javascript
-    // bad
+    // Bad.
     const items = new Array();
 
-    // good
+    // Good.
     const items = [];
     ```
 
@@ -292,10 +290,10 @@ Other style guides:
     ```javascript
     const someStack = [];
 
-    // bad
+    // Bad.
     someStack[someStack.length] = 'abracadabra';
 
-    // good
+    // Good.
     someStack.push('abracadabra');
     ```
 
@@ -303,18 +301,21 @@ Other style guides:
   - [4.3](#4.3) <a name='4.3'></a> Use array spreads `...` to copy arrays.
 
     ```javascript
-    // bad
+    // Bad.
+    
     const len = items.length;
     const itemsCopy = [];
+    
     let i;
 
     for (i = 0; i < len; i++) {
       itemsCopy[i] = items[i];
     }
 
-    // good
+    // Good.
     const itemsCopy = [...items];
     ```
+    
   - [4.4](#4.4) <a name='4.4'></a> To convert an array-like object to an array, use Array#from.
 
     ```javascript
@@ -322,7 +323,7 @@ Other style guides:
     const nodes = Array.from(foo);
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## Destructuring
 
@@ -331,7 +332,7 @@ Other style guides:
   > Why? Destructuring saves you from creating temporary references for those properties.
 
     ```javascript
-    // bad
+    // Bad.
     function getFullName(user) {
       const firstName = user.firstName;
       const lastName = user.lastName;
@@ -339,14 +340,15 @@ Other style guides:
       return `${firstName} ${lastName}`;
     }
 
-    // good
+    // Good.
     function getFullName(obj) {
-      const { firstName, lastName } = obj;
+      const {firstName, lastName} = obj;
+      
       return `${firstName} ${lastName}`;
     }
 
-    // best
-    function getFullName({ firstName, lastName }) {
+    // Best.
+    function getFullName({firstName, lastName}) {
       return `${firstName} ${lastName}`;
     }
     ```
@@ -356,11 +358,12 @@ Other style guides:
     ```javascript
     const arr = [1, 2, 3, 4];
 
-    // bad
+    // Bad.
+    
     const first = arr[0];
     const second = arr[1];
 
-    // good
+    // Good.
     const [first, second] = arr;
     ```
 
@@ -369,37 +372,41 @@ Other style guides:
   > Why? You can add new properties over time or change the order of things without breaking call sites.
 
     ```javascript
-    // bad
+    // Bad.
+    
     function processInput(input) {
-      // then a miracle occurs
+    
+      // Then a miracle occurs.
       return [left, right, top, bottom];
     }
 
-    // the caller needs to think about the order of return data
+    // The caller needs to think about the order of return data.
     const [left, __, top] = processInput(input);
 
-    // good
+    // Good.
+    
     function processInput(input) {
-      // then a miracle occurs
-      return { left, right, top, bottom };
+    
+      // Then a miracle occurs.
+      return {left, right, top, bottom};
     }
 
-    // the caller selects only the data they need
-    const { left, right } = processInput(input);
+    // The caller selects only the data they need.
+    const {left, right} = processInput(input);
     ```
 
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## Strings
 
   - [6.1](#6.1) <a name='6.1'></a> Use single quotes `''` for strings.
 
     ```javascript
-    // bad
+    // Bad.
     const name = "Capt. Janeway";
 
-    // good
+    // Good.
     const name = 'Capt. Janeway';
     ```
 
