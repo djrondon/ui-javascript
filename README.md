@@ -1,4 +1,4 @@
-# Maple Inside JavaScript Style Guide
+# Maple Inside UI JavaScript Style Guide
 
 > Efficient and readable JavaScript adapted to UI businesses.
 
@@ -49,11 +49,11 @@ Other style guides:
 
   - [1.1](#1.1) <a name='1.1'></a> **Primitives**: when you access a primitive type you work directly on its value.
 
-    + `string`
-    + `number`
-    + `boolean`
-    + `null`
-    + `undefined`
+    + `string`;
+    + `number`;
+    + `boolean`;
+    + `null`;
+    + `undefined`.
 
     ```javascript
     const foo = 1;
@@ -997,21 +997,28 @@ Other style guides:
   > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
 
     ```javascript
-    // bad
+    // Bad.
     let i, len, dragonball,
         items = getItems(),
         goSportsTeam = true;
 
-    // bad
+    // Bad.
+    
     let i;
+    
     const items = getItems();
+    
     let dragonball;
+    
     const goSportsTeam = true;
+    
     let len;
 
-    // good
+    // Good.
+    
     const goSportsTeam = true;
     const items = getItems();
+    
     let dragonball;
     let i;
     let length;
@@ -1022,23 +1029,23 @@ Other style guides:
   > Why? `let` and `const` are block scoped and not function scoped.
 
     ```javascript
-    // good
+    // Good.
     function() {
       test();
       console.log('doing stuff..');
 
-      //..other stuff..
+      // ...other stuff...
 
       const name = getName();
 
-      if (name === 'test') {
+      if ('test' === name) {
         return false;
       }
 
       return name;
     }
 
-    // bad - unnecessary function call
+    // Bad — unnecessary function call.
     function(hasName) {
       const name = getName();
 
@@ -1051,39 +1058,40 @@ Other style guides:
       return true;
     }
 
-    // good
+    // Good.
     function(hasName) {
       if (!hasName) {
         return false;
       }
 
       const name = getName();
+      
       this.setFirstName(name);
 
       return true;
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Hoisting
 
   - [14.1](#14.1) <a name='14.1'></a> `var` declarations get hoisted to the top of their scope, their assignment does not. `const` and `let` declarations are blessed with a new concept called [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let). It's important to know why [typeof is no longer safe](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
 
     ```javascript
-    // we know this wouldn't work (assuming there
-    // is no notDefined global variable)
+    // We know this wouldn't work (assuming there
+    // is no notDefined global variable).
     function example() {
-      console.log(notDefined); // => throws a ReferenceError
+      console.log(notDefined); // Throws a ReferenceError.
     }
 
-    // creating a variable declaration after you
+    // Creating a variable declaration after you
     // reference the variable will work due to
     // variable hoisting. Note: the assignment
     // value of `true` is not hoisted.
     function example() {
-      console.log(declaredButNotAssigned); // => undefined
+      console.log(declaredButNotAssigned); // undefined
+      
       var declaredButNotAssigned = true;
     }
 
@@ -1092,14 +1100,16 @@ Other style guides:
     // which means our example could be rewritten as:
     function example() {
       let declaredButNotAssigned;
-      console.log(declaredButNotAssigned); // => undefined
+      
+      console.log(declaredButNotAssigned); // undefined
       declaredButNotAssigned = true;
     }
 
-    // using const and let
+    // Using const and let.
     function example() {
-      console.log(declaredButNotAssigned); // => throws a ReferenceError
-      console.log(typeof declaredButNotAssigned); // => throws a ReferenceError
+      console.log(declaredButNotAssigned); // Throws a ReferenceError.
+      console.log(typeof declaredButNotAssigned); // Throws a ReferenceError.
+      
       const declaredButNotAssigned = true;
     }
     ```
@@ -1108,9 +1118,9 @@ Other style guides:
 
     ```javascript
     function example() {
-      console.log(anonymous); // => undefined
+      console.log(anonymous); // undefined
 
-      anonymous(); // => TypeError anonymous is not a function
+      anonymous(); // TypeError anonymous is not a function.
 
       var anonymous = function() {
         console.log('anonymous function expression');
@@ -1122,23 +1132,22 @@ Other style guides:
 
     ```javascript
     function example() {
-      console.log(named); // => undefined
+      console.log(named); // undefined
 
-      named(); // => TypeError named is not a function
-
-      superPower(); // => ReferenceError superPower is not defined
+      named(); // TypeError named is not a function.
+      superPower(); // ReferenceError superPower is not defined.
 
       var named = function superPower() {
         console.log('Flying');
       };
     }
 
-    // the same is true when the function name
+    // The same is true when the function name
     // is the same as the variable name.
     function example() {
-      console.log(named); // => undefined
+      console.log(named); // undefined
 
-      named(); // => TypeError named is not a function
+      named(); // TypeError named is not a function.
 
       var named = function named() {
         console.log('named');
@@ -1150,7 +1159,7 @@ Other style guides:
 
     ```javascript
     function example() {
-      superPower(); // => Flying
+      superPower(); // Flying
 
       function superPower() {
         console.log('Flying');
@@ -1160,47 +1169,46 @@ Other style guides:
 
   - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Comparison Operators & Equality
 
   - [15.1](#15.1) <a name='15.1'></a> Use `===` and `!==` over `==` and `!=`.
   - [15.2](#15.2) <a name='15.2'></a> Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
 
-    + **Objects** evaluate to **true**
-    + **Undefined** evaluates to **false**
-    + **Null** evaluates to **false**
-    + **Booleans** evaluate to **the value of the boolean**
-    + **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-    + **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+    + **Objects** evaluate to **true**;
+    + **Undefined** evaluates to **false**;
+    + **Null** evaluates to **false**;
+    + **Booleans** evaluate to **the value of the boolean**;
+    + **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**;
+    + **Strings** evaluate to **false** if an empty string `''`, otherwise **true**.
 
     ```javascript
     if ([0]) {
       // true
-      // An array is an object, objects evaluate to true
+      // An array is an object, objects evaluate to true.
     }
     ```
 
   - [15.3](#15.3) <a name='15.3'></a> Use shortcuts.
 
     ```javascript
-    // bad
-    if (name !== '') {
+    // Bad.
+    if ('' !== name) {
       // ...stuff...
     }
 
-    // good
+    // Good.
     if (name) {
       // ...stuff...
     }
 
-    // bad
-    if (collection.length > 0) {
+    // Bad.
+    if (0 < collection.length) {
       // ...stuff...
     }
 
-    // good
+    // Good.
     if (collection.length) {
       // ...stuff...
     }
@@ -1208,30 +1216,29 @@ Other style guides:
 
   - [15.4](#15.4) <a name='15.4'></a> For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Blocks
 
   - [16.1](#16.1) <a name='16.1'></a> Use braces with all multi-line blocks.
 
     ```javascript
-    // bad
+    // Bad.
     if (test)
       return false;
 
-    // good
+    // Good.
     if (test) return false;
 
-    // good
+    // Good.
     if (test) {
       return false;
     }
 
-    // bad
+    // Bad.
     function() { return false; }
 
-    // good
+    // Good.
     function() {
       return false;
     }
@@ -1241,7 +1248,7 @@ Other style guides:
     `if` block's closing brace.
 
     ```javascript
-    // bad
+    // Bad.
     if (test) {
       thing1();
       thing2();
@@ -1250,7 +1257,7 @@ Other style guides:
       thing3();
     }
 
-    // good
+    // Good.
     if (test) {
       thing1();
       thing2();
@@ -1259,29 +1266,15 @@ Other style guides:
     }
     ```
 
-
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Comments
 
-  - [17.1](#17.1) <a name='17.1'></a> Use `/** ... */` for multi-line comments. Include a description, specify types and values for all parameters and return values.
+  - [17.1](#17.1) <a name='17.1'></a> Use `//` for multi-line comments. Include a description, specify types and values for all parameters and return values.
 
     ```javascript
-    // bad
-    // make() returns a new element
-    // based on the passed in tag name
-    //
-    // @param {String} tag
-    // @return {Element} element
-    function make(tag) {
-
-      // ...stuff...
-
-      return element;
-    }
-
-    // good
+    // Bad.
+    
     /**
      * make() returns a new element
      * based on the passed in tag name
@@ -1295,47 +1288,63 @@ Other style guides:
 
       return element;
     }
+
+    // Good.
+    
+    // make() returns a new element
+    // based on the passed in tag name
+    //
+    // @param {String} tag
+    // @return {Element} element
+    function make(tag) {
+
+      // ...stuff...
+
+      return element;
+    }
     ```
 
-  - [17.2](#17.2) <a name='17.2'></a> Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it's on the first line of a block.
+  - [17.2](#17.2) <a name='17.2'></a> Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment.
 
     ```javascript
-    // bad
-    const active = true;  // is current tab
+    // Bad.
+    const active = true;  // Is current tab.
 
-    // good
-    // is current tab
+    // Good.
+    
+    // Is current tab.
     const active = true;
 
-    // bad
+    // Bad.
     function getType() {
       console.log('fetching type...');
-      // set the default type to 'no type'
+      // Set the default type to 'no type'.
       const type = this._type || 'no type';
 
       return type;
     }
 
-    // good
+    // Good.
     function getType() {
       console.log('fetching type...');
 
-      // set the default type to 'no type'
+      // Set the default type to 'no type'.
       const type = this._type || 'no type';
 
       return type;
     }
 
-    // also good
+    // Also good.
     function getType() {
-      // set the default type to 'no type'
+    
+      // Set the default type to 'no type'.
       const type = this._type || 'no type';
 
       return type;
     }
     ```
 
-  - [17.3](#17.3) <a name='17.3'></a> Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
+  - [17.3](#17.3) <a name='17.3'></a> Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME: need to figure this out.` or `TODO: need to implement.`.
 
   - [17.4](#17.4) <a name='17.4'></a> Use `// FIXME:` to annotate problems.
 
@@ -1344,7 +1353,7 @@ Other style guides:
       constructor() {
         super();
 
-        // FIXME: shouldn't use a global here
+        // FIXME: shouldn't use a global here.
         total = 0;
       }
     }
@@ -1357,31 +1366,30 @@ Other style guides:
       constructor() {
         super();
 
-        // TODO: total should be configurable by an options param
+        // TODO: total should be configurable by an options param.
         this.total = 0;
       }
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Whitespace
 
   - [18.1](#18.1) <a name='18.1'></a> Use soft tabs set to 2 spaces.
 
     ```javascript
-    // bad
+    // Bad.
     function() {
     ∙∙∙∙const name;
     }
 
-    // bad
+    // Bad.
     function() {
     ∙const name;
     }
 
-    // good
+    // Good.
     function() {
     ∙∙const name;
     }
@@ -1390,48 +1398,48 @@ Other style guides:
   - [18.2](#18.2) <a name='18.2'></a> Place 1 space before the leading brace.
 
     ```javascript
-    // bad
+    // Bad.
     function test(){
       console.log('test');
     }
 
-    // good
+    // Good.
     function test() {
       console.log('test');
     }
 
-    // bad
+    // Bad.
     dog.set('attr',{
       age: '1 year',
-      breed: 'Bernese Mountain Dog',
+      breed: 'Bernese Mountain Dog'
     });
 
-    // good
+    // Good.
     dog.set('attr', {
       age: '1 year',
-      breed: 'Bernese Mountain Dog',
+      breed: 'Bernese Mountain Dog'
     });
     ```
 
   - [18.3](#18.3) <a name='18.3'></a> Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space before the argument list in function calls and declarations.
 
     ```javascript
-    // bad
+    // Bad.
     if(isJedi) {
       fight ();
     }
 
-    // good
+    // Good.
     if (isJedi) {
       fight();
     }
 
-    // bad
+    // Bad.
     function fight () {
       console.log ('Swooosh!');
     }
 
-    // good
+    // Good.
     function fight() {
       console.log('Swooosh!');
     }
@@ -1440,33 +1448,36 @@ Other style guides:
   - [18.4](#18.4) <a name='18.4'></a> Set off operators with spaces.
 
     ```javascript
-    // bad
+    // Bad.
     const x=y+5;
 
-    // good
+    // Good.
     const x = y + 5;
     ```
 
   - [18.5](#18.5) <a name='18.5'></a> End files with a single newline character.
 
     ```javascript
-    // bad
+    // Bad.
     (function(global) {
+    
       // ...stuff...
     })(this);
     ```
 
     ```javascript
-    // bad
+    // Bad.
     (function(global) {
+    
       // ...stuff...
     })(this);↵
     ↵
     ```
 
     ```javascript
-    // good
+    // Good.
     (function(global) {
+    
       // ...stuff...
     })(this);↵
     ```
@@ -1475,10 +1486,10 @@ Other style guides:
     emphasizes that the line is a method call, not a new statement.
 
     ```javascript
-    // bad
+    // Bad.
     $('#items').find('.selected').highlight().end().find('.open').updateCount();
 
-    // bad
+    // Bad.
     $('#items').
       find('.selected').
         highlight().
@@ -1486,7 +1497,7 @@ Other style guides:
       find('.open').
         updateCount();
 
-    // good
+    // Good.
     $('#items')
       .find('.selected')
         .highlight()
@@ -1494,13 +1505,13 @@ Other style guides:
       .find('.open')
         .updateCount();
 
-    // bad
+    // Bad.
     const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
         .attr('width', (radius + margin) * 2).append('svg:g')
         .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
         .call(tron.led);
 
-    // good
+    // Good.
     const leds = stage.selectAll('.led')
         .data(data)
       .enter().append('svg:svg')
@@ -1511,58 +1522,67 @@ Other style guides:
         .call(tron.led);
     ```
 
-  - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement.
+  - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement. But don't do it on a object or an array.
 
     ```javascript
-    // bad
+    // Bad.
     if (foo) {
       return bar;
     }
     return baz;
 
-    // good
+    // Good.
     if (foo) {
       return bar;
     }
 
     return baz;
 
-    // bad
+    // Bad.
     const obj = {
       foo() {
       },
       bar() {
-      },
+      }
     };
     return obj;
 
-    // good
+    // Bad.
     const obj = {
       foo() {
       },
-
+      
       bar() {
+      }
+    };
+
+    return obj;
+    
+    // Good.
+    const obj = {
+      foo() {
       },
+      bar() {
+      }
     };
 
     return obj;
 
-    // bad
+    // Bad.
     const arr = [
       function foo() {
       },
       function bar() {
-      },
+      }
     ];
     return arr;
 
-    // good
+    // Good.
     const arr = [
       function foo() {
       },
-
       function bar() {
-      },
+      }
     ];
 
     return arr;
@@ -1571,14 +1591,14 @@ Other style guides:
   - [18.8](#18.8) <a name='18.8'></a> Do not pad your blocks with blank lines.
 
     ```javascript
-    // bad
+    // Bad.
     function bar() {
 
       console.log(foo);
 
     }
 
-    // also bad
+    // Also bad.
     if (baz) {
 
       console.log(qux);
@@ -1587,12 +1607,12 @@ Other style guides:
 
     }
 
-    // good
+    // Good.
     function bar() {
       console.log(foo);
     }
 
-    // good
+    // Good.
     if (baz) {
       console.log(qux);
     } else {
@@ -1601,28 +1621,28 @@ Other style guides:
     ```
 
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## Commas
 
-  - [19.1](#19.1) <a name='19.1'></a> Leading commas: **Nope.**
+  - [19.1](#19.1) <a name='19.1'></a> Leading commas: **Nope**.
 
     ```javascript
-    // bad
+    // Bad.
     const story = [
         once
       , upon
       , aTime
     ];
 
-    // good
+    // Good.
     const story = [
       once,
       upon,
-      aTime,
+      aTime
     ];
 
-    // bad
+    // Bad.
     const hero = {
         firstName: 'Ada'
       , lastName: 'Lovelace'
@@ -1630,21 +1650,21 @@ Other style guides:
       , superPower: 'computers'
     };
 
-    // good
+    // Good.
     const hero = {
       firstName: 'Ada',
       lastName: 'Lovelace',
       birthYear: 1815,
-      superPower: 'computers',
+      superPower: 'computers'
     };
     ```
 
-  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: **Yup.**
+  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: **Yup**.
 
   > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers.
 
     ```javascript
-    // bad - git diff without trailing comma
+    // Bad: git diff without trailing comma.
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -1652,14 +1672,15 @@ Other style guides:
     +    inventorOf: ['coxcomb graph', 'modern nursing']
     };
 
-    // good - git diff with trailing comma
+    // Good: git diff with trailing comma.
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
     +    inventorOf: ['coxcomb chart', 'modern nursing'],
     };
 
-    // bad
+    // Bad.
+    
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully'
@@ -1670,7 +1691,8 @@ Other style guides:
       'Superman'
     ];
 
-    // good
+    // Good.
+    
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully',
@@ -1682,37 +1704,38 @@ Other style guides:
     ];
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Semicolons
 
   - [20.1](#20.1) <a name='20.1'></a> **Yup.**
 
     ```javascript
-    // bad
+    // Bad.
     (function() {
       const name = 'Skywalker'
+      
       return name
     })()
 
-    // good
+    // Good.
     (() => {
       const name = 'Skywalker';
+      
       return name;
     })();
 
-    // good (guards against the function becoming an argument when two files with IIFEs are concatenated)
+    // Good (guards against the function becoming an argument when two files with IIFEs are concatenated).
     ;(() => {
       const name = 'Skywalker';
+      
       return name;
     })();
     ```
 
     [Read more](http://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214).
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Type Casting & Coercion
 
