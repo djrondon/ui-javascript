@@ -689,16 +689,15 @@ Other style guides:
 
   > Why? Less visual clutter.
 
-    ```js
-    // good
+    ```javascript
+    // Good.
     [1, 2, 3].map(x => x * x);
 
-    // good
+    // Good.
     [1, 2, 3].reduce((y, x) => x + y);
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Constructors
 
@@ -707,25 +706,31 @@ Other style guides:
   > Why? `class` syntax is more concise and easier to reason about.
 
     ```javascript
-    // bad
+    // Bad.
+    
     function Queue(contents = []) {
       this._queue = [...contents];
     }
+    
     Queue.prototype.pop = function() {
       const value = this._queue[0];
+      
       this._queue.splice(0, 1);
+      
       return value;
     }
 
-
-    // good
+    // Good.
     class Queue {
       constructor(contents = []) {
         this._queue = [...contents];
       }
+      
       pop() {
         const value = this._queue[0];
+        
         this._queue.splice(0, 1);
+        
         return value;
       }
     }
@@ -736,17 +741,21 @@ Other style guides:
   > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
 
     ```javascript
-    // bad
+    // Bad.
+    
     const inherits = require('inherits');
+    
     function PeekableQueue(contents) {
       Queue.apply(this, contents);
     }
+    
     inherits(PeekableQueue, Queue);
+    
     PeekableQueue.prototype.peek = function() {
       return this._queue[0];
     }
 
-    // good
+    // Good.
     class PeekableQueue extends Queue {
       peek() {
         return this._queue[0];
@@ -757,9 +766,11 @@ Other style guides:
   - [9.3](#9.3) <a name='9.3'></a> Methods can return `this` to help with method chaining.
 
     ```javascript
-    // bad
+    // Bad.
+    
     Jedi.prototype.jump = function() {
       this.jumping = true;
+      
       return true;
     };
 
@@ -768,18 +779,22 @@ Other style guides:
     };
 
     const luke = new Jedi();
-    luke.jump(); // => true
-    luke.setHeight(20); // => undefined
+    
+    luke.jump(); // true
+    luke.setHeight(20); // undefined
 
-    // good
+    // Good.
+    
     class Jedi {
       jump() {
         this.jumping = true;
+        
         return this;
       }
 
       setHeight(height) {
         this.height = height;
+        
         return this;
       }
     }
@@ -789,7 +804,6 @@ Other style guides:
     luke.jump()
       .setHeight(20);
     ```
-
 
   - [9.4](#9.4) <a name='9.4'></a> It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
 
@@ -809,26 +823,31 @@ Other style guides:
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Modules
 
-  - [10.1](#10.1) <a name='10.1'></a> Always use modules (`import`/`export`) over a non-standard module system. You can always transpile to your preferred module system.
+  - [10.1](#10.1) <a name='10.1'></a> Always use modules (`import`/`export`) over a non-standard module system.
 
   > Why? Modules are the future, let's start using the future now.
 
     ```javascript
-    // bad
-    const AirbnbStyleGuide = require('./AirbnbStyleGuide');
-    module.exports = AirbnbStyleGuide.es6;
+    // Bad.
+    
+    const MapleInsideStyleGuide = require('./MapleInsideStyleGuide');
+    
+    module.exports = MapleInsideStyleGuide.es6;
 
-    // ok
-    import AirbnbStyleGuide from './AirbnbStyleGuide';
-    export default AirbnbStyleGuide.es6;
+    // Ok.
+    
+    import MapleInsideStyleGuide from './MapleInsideStyleGuide';
+    
+    export default MapleInsideStyleGuide.es6;
 
-    // best
-    import { es6 } from './AirbnbStyleGuide';
+    // Best.
+    
+    import {es6} from './MapleInsideStyleGuide';
+    
     export default es6;
     ```
 
@@ -837,29 +856,32 @@ Other style guides:
   > Why? This makes sure you have a single default export.
 
     ```javascript
-    // bad
-    import * as AirbnbStyleGuide from './AirbnbStyleGuide';
+    // Bad.
+    import * as MapleInsideStyleGuide from './MapleInsideStyleGuide';
 
-    // good
-    import AirbnbStyleGuide from './AirbnbStyleGuide';
+    // Good.
+    import MapleInsideStyleGuide from './MapleInsideStyleGuide';
     ```
 
-  - [10.3](#10.3) <a name='10.3'></a>And do not export directly from an import.
+  - [10.3](#10.3) <a name='10.3'></a> And do not export directly from an import.
 
   > Why? Although the one-liner is concise, having one clear way to import and one clear way to export makes things consistent.
 
     ```javascript
-    // bad
-    // filename es6.js
-    export { es6 as default } from './airbnbStyleGuide';
+    // Bad.
+    
+    // Filename es6.js.
+    export {es6 as default} from './MapleInsideStyleGuide';
 
-    // good
-    // filename es6.js
-    import { es6 } from './AirbnbStyleGuide';
+    // Good.
+    
+    // Filename es6.js.
+    import {es6} from './MapleInsideStyleGuide';
+    
     export default es6;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## Iterators and Generators
 
@@ -870,30 +892,35 @@ Other style guides:
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
 
-    // bad
+    // Bad.
+    
     let sum = 0;
+    
     for (let num of numbers) {
       sum += num;
     }
 
-    sum === 15;
+    15 === sum;
 
-    // good
+    // Good.
+    
     let sum = 0;
+    
     numbers.forEach((num) => sum += num);
-    sum === 15;
+    15 === sum;
 
-    // best (use the functional force)
+    // Best (use the functional force).
+    
     const sum = numbers.reduce((total, num) => total + num, 0);
-    sum === 15;
+    
+    15 === sum;
     ```
 
   - [11.2](#11.2) <a name='11.2'></a> Don't use generators for now.
 
   > Why? They don't transpile well to ES5.
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Properties
 
