@@ -411,19 +411,19 @@ Other style guides:
     ```
 
   - [6.2](#6.2) <a name='6.2'></a> Strings longer than 100 characters should be written across multiple lines using string concatenation.
-  - [6.3](#6.3) <a name='6.3'></a> Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40).
+  - [6.3](#6.3) <a name='6.3'></a> Note: if overused, long strings with concatenation could impact performance.
 
     ```javascript
-    // bad
+    // Bad.
     const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
 
-    // bad
+    // Bad.
     const errorMessage = 'This is a super long error that was thrown because \
     of Batman. When you stop to think about how Batman had anything to do \
     with this, you would get nowhere \
     fast.';
 
-    // good
+    // Good.
     const errorMessage = 'This is a super long error that was thrown because ' +
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
@@ -435,24 +435,25 @@ Other style guides:
   > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
 
     ```javascript
-    // bad
+    // Bad.
     function sayHi(name) {
       return 'How are you, ' + name + '?';
     }
 
-    // bad
+    // Bad.
     function sayHi(name) {
       return ['How are you, ', name, '?'].join();
     }
 
-    // good
+    // Good.
     function sayHi(name) {
       return `How are you, ${name}?`;
     }
     ```
+    
   - [6.5](#6.5) <a name='6.5'></a> Never use `eval()` on a string, it opens too many vulnerabilities.
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 
 ## Functions
@@ -462,11 +463,11 @@ Other style guides:
   > Why? Function declarations are named, so they're easier to identify in call stacks. Also, the whole body of a function declaration is hoisted, whereas only the reference of a function expression is hoisted. This rule makes it possible to always use [Arrow Functions](#arrow-functions) in place of function expressions.
 
     ```javascript
-    // bad
-    const foo = function () {
+    // Bad.
+    const foo = function() {
     };
 
-    // good
+    // Good.
     function foo() {
     }
     ```
@@ -474,25 +475,28 @@ Other style guides:
   - [7.2](#7.2) <a name='7.2'></a> Function expressions:
 
     ```javascript
-    // immediately-invoked function expression (IIFE)
+    // Immediately-invoked function expression (IIFE).
     (() => {
       console.log('Welcome to the Internet. Please follow me.');
     })();
     ```
 
   - [7.3](#7.3) <a name='7.3'></a> Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears.
-  - [7.4](#7.4) <a name='7.4'></a> **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+  - [7.4](#7.4) <a name='7.4'></a> **Note**: ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
     ```javascript
-    // bad
+    // Bad.
+    
     if (currentUser) {
       function test() {
         console.log('Nope.');
       }
     }
 
-    // good
+    // Good.
+    
     let test;
+    
     if (currentUser) {
       test = () => {
         console.log('Yup.');
@@ -503,13 +507,15 @@ Other style guides:
   - [7.5](#7.5) <a name='7.5'></a> Never name a parameter `arguments`. This will take precedence over the `arguments` object that is given to every function scope.
 
     ```javascript
-    // bad
+    // Bad.
     function nope(name, options, arguments) {
+    
       // ...stuff...
     }
 
-    // good
+    // Good.
     function yup(name, options, args) {
+      
       // ...stuff...
     }
     ```
@@ -520,13 +526,14 @@ Other style guides:
   > Why? `...` is explicit about which arguments you want pulled. Plus rest arguments are a real Array and not Array-like like `arguments`.
 
     ```javascript
-    // bad
+    // Bad.
     function concatenateAll() {
       const args = Array.prototype.slice.call(arguments);
+      
       return args.join('');
     }
 
-    // good
+    // Good.
     function concatenateAll(...args) {
       return args.join('');
     }
@@ -536,25 +543,29 @@ Other style guides:
   - [7.7](#7.7) <a name='7.7'></a> Use default parameter syntax rather than mutating function arguments.
 
     ```javascript
-    // really bad
+    // Really bad.
     function handleThings(opts) {
+    
       // No! We shouldn't mutate function arguments.
       // Double bad: if opts is falsy it'll be set to an object which may
       // be what you want but it can introduce subtle bugs.
       opts = opts || {};
+      
       // ...
     }
 
-    // still bad
+    // Still bad.
     function handleThings(opts) {
-      if (opts === void 0) {
+      if (void 0 === opts) {
         opts = {};
       }
+      
       // ...
     }
 
-    // good
+    // Good.
     function handleThings(opts = {}) {
+      
       // ...
     }
     ```
@@ -565,10 +576,12 @@ Other style guides:
 
   ```javascript
   var b = 1;
-  // bad
+  
+  // Bad.
   function count(a = b++) {
     console.log(a);
   }
+  
   count();  // 1
   count();  // 2
   count(3); // 3
@@ -578,13 +591,15 @@ Other style guides:
   - [7.9](#7.9) <a name='7.9'></a> Always put default parameters last.
 
     ```javascript
-    // bad
+    // Bad.
     function handleThings(opts = {}, name) {
+      
       // ...
     }
 
-    // good
+    // Good.
     function handleThings(name, opts = {}) {
+      
       // ...
     }
     ```
@@ -594,14 +609,14 @@ Other style guides:
   > Why? Creating a function in this way evaluates a string similarly to eval(), which opens vulnerabilities.
 
   ```javascript
-  // bad
+  // Bad.
   var add = new Function('a', 'b', 'return a + b');
 
-  // still bad
+  // Still bad.
   var subtract = Function('a', 'b', 'return a - b');
   ```
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## Arrow Functions
 
@@ -612,15 +627,17 @@ Other style guides:
   > Why not? If you have a fairly complicated function, you might move that logic out into its own function declaration.
 
     ```javascript
-    // bad
-    [1, 2, 3].map(function (x) {
+    // Bad.
+    [1, 2, 3].map(function(x) {
       const y = x + 1;
+      
       return x * y;
     });
 
-    // good
+    // Good.
     [1, 2, 3].map((x) => {
       const y = x + 1;
+      
       return x * y;
     });
     ```
@@ -632,18 +649,20 @@ Other style guides:
   > Why not? If you plan on returning an object.
 
     ```javascript
-    // good
+    // Good.
     [1, 2, 3].map(number => `A string containing the ${number}.`);
 
-    // bad
+    // Bad.
     [1, 2, 3].map(number => {
       const nextNumber = number + 1;
+      
       `A string containing the ${nextNumber}.`;
     });
 
-    // good
+    // Good.
     [1, 2, 3].map(number => {
       const nextNumber = number + 1;
+      
       return `A string containing the ${nextNumber}.`;
     });
     ```
@@ -652,20 +671,19 @@ Other style guides:
 
   > Why? It shows clearly where the function starts and ends.
 
-    ```js
-    // bad
+    ```javascript
+    // Bad.
     [1, 2, 3].map(number => 'As time went by, the string containing the ' +
       `${number} became much longer. So we needed to break it over multiple ` +
       'lines.'
     );
 
-    // good
+    // Good.
     [1, 2, 3].map(number => (
       `As time went by, the string containing the ${number} became much ` +
       'longer. So we needed to break it over multiple lines.'
     ));
     ```
-
 
   - [8.4](#8.4) <a name='8.4'></a> If your function only takes a single argument, feel free to omit the parentheses.
 
