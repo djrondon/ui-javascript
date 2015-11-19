@@ -1743,57 +1743,56 @@ Other style guides:
   - [21.2](#21.2) <a name='21.2'></a> Strings:
 
     ```javascript
-    //  => this.reviewScore = 9;
+    // this.reviewScore = 9;
 
-    // bad
+    // Bad.
     const totalScore = this.reviewScore + '';
 
-    // good
+    // Good.
     const totalScore = String(this.reviewScore);
     ```
 
-  - [21.3](#21.3) <a name='21.3'></a> Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings.
+  - [21.3](#21.3) <a name='21.3'></a> Numbers: use `Number` for type casting and `parseInt` always with a radix for parsing strings.
 
     ```javascript
     const inputValue = '4';
 
-    // bad
+    // Bad.
     const val = new Number(inputValue);
 
-    // bad
+    // Bad.
     const val = +inputValue;
 
-    // bad
+    // Bad.
     const val = inputValue >> 0;
 
-    // bad
+    // Bad.
     const val = parseInt(inputValue);
 
-    // good
+    // Good.
     const val = Number(inputValue);
 
-    // good
+    // Good.
     const val = parseInt(inputValue, 10);
     ```
 
   - [21.4](#21.4) <a name='21.4'></a> If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
 
     ```javascript
-    // good
-    /**
-     * parseInt was the reason my code was slow.
-     * Bitshifting the String to coerce it to a
-     * Number made it a lot faster.
-     */
+    // Good.
+    
+    // parseInt was the reason my code was slow.
+    // Bitshifting the String to coerce it to a
+    // Number made it a lot faster.
     const val = inputValue >> 0;
     ```
 
-  - [21.5](#21.5) <a name='21.5'></a> **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [21.5](#21.5) <a name='21.5'></a> **Note**: be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
 
     ```javascript
-    2147483647 >> 0 //=> 2147483647
-    2147483648 >> 0 //=> -2147483648
-    2147483649 >> 0 //=> -2147483647
+    2147483647 >> 0 // 2147483647
+    2147483648 >> 0 // -2147483648
+    2147483649 >> 0 // -2147483647
     ```
 
   - [21.6](#21.6) <a name='21.6'></a> Booleans:
@@ -1801,44 +1800,48 @@ Other style guides:
     ```javascript
     const age = 0;
 
-    // bad
+    // Bad.
     const hasAge = new Boolean(age);
 
-    // good
+    // Good.
     const hasAge = Boolean(age);
 
-    // good
+    // Good.
     const hasAge = !!age;
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Naming Conventions
 
   - [22.1](#22.1) <a name='22.1'></a> Avoid single letter names. Be descriptive with your naming.
 
     ```javascript
-    // bad
+    // Bad.
     function q() {
+    
       // ...stuff...
     }
 
-    // good
+    // Good.
     function query() {
-      // ..stuff..
+    
+      // ...stuff...
     }
     ```
 
   - [22.2](#22.2) <a name='22.2'></a> Use camelCase when naming objects, functions, and instances.
 
     ```javascript
-    // bad
+    // Bad.
+    
     const OBJEcttsssss = {};
     const this_is_my_object = {};
+    
     function c() {}
 
-    // good
+    // Good.
+    
     const thisIsMyObject = {};
     function thisIsMyFunction() {}
     ```
@@ -1846,7 +1849,8 @@ Other style guides:
   - [22.3](#22.3) <a name='22.3'></a> Use PascalCase when naming constructors or classes.
 
     ```javascript
-    // bad
+    // Bad.
+    
     function user(options) {
       this.name = options.name;
     }
@@ -1855,7 +1859,8 @@ Other style guides:
       name: 'nope',
     });
 
-    // good
+    // Good.
+    
     class User {
       constructor(options) {
         this.name = options.name;
@@ -1870,34 +1875,37 @@ Other style guides:
   - [22.4](#22.4) <a name='22.4'></a> Use a leading underscore `_` when naming private properties.
 
     ```javascript
-    // bad
+    // Bad.
+    
     this.__firstName__ = 'Panda';
     this.firstName_ = 'Panda';
 
-    // good
+    // Good.
     this._firstName = 'Panda';
     ```
 
   - [22.5](#22.5) <a name='22.5'></a> Don't save references to `this`. Use arrow functions or Function#bind.
 
     ```javascript
-    // bad
+    // Bad.
     function foo() {
       const self = this;
+      
       return function() {
         console.log(self);
       };
     }
 
-    // bad
+    // Bad.
     function foo() {
       const that = this;
+      
       return function() {
         console.log(that);
       };
     }
 
-    // good
+    // Good.
     function foo() {
       return () => {
         console.log(this);
@@ -1907,20 +1915,24 @@ Other style guides:
 
   - [22.6](#22.6) <a name='22.6'></a> If your file exports a single class, your filename should be exactly the name of the class.
     ```javascript
-    // file contents
+    // File contents.
+    
     class CheckBox {
+    
       // ...
     }
+    
     export default CheckBox;
 
-    // in some other file
-    // bad
+    // In some other file.
+    
+    // Bad.
     import CheckBox from './checkBox';
 
-    // bad
+    // Bad.
     import CheckBox from './check_box';
 
-    // good
+    // Good.
     import CheckBox from './CheckBox';
     ```
 
@@ -1933,7 +1945,7 @@ Other style guides:
     export default makeStyleGuide;
     ```
 
-  - [22.8](#22.8) <a name='22.8'></a> Use PascalCase when you export a singleton / function library / bare object.
+  - [22.8](#22.8) <a name='22.8'></a> Use PascalCase when you export a singleton/function library/bare object.
 
     ```javascript
     const AirbnbStyleGuide = {
@@ -1944,9 +1956,7 @@ Other style guides:
     export default AirbnbStyleGuide;
     ```
 
-
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Accessors
 
@@ -1954,28 +1964,28 @@ Other style guides:
   - [23.2](#23.2) <a name='23.2'></a> If you do make accessor functions use getVal() and setVal('hello').
 
     ```javascript
-    // bad
+    // Bad.
     dragon.age();
 
-    // good
+    // Good.
     dragon.getAge();
 
-    // bad
+    // Bad.
     dragon.age(25);
 
-    // good
+    // Good.
     dragon.setAge(25);
     ```
 
   - [23.3](#23.3) <a name='23.3'></a> If the property is a `boolean`, use `isVal()` or `hasVal()`.
 
     ```javascript
-    // bad
+    // Bad.
     if (!dragon.age()) {
       return false;
     }
 
-    // good
+    // Good.
     if (!dragon.hasAge()) {
       return false;
     }
@@ -1987,6 +1997,7 @@ Other style guides:
     class Jedi {
       constructor(options = {}) {
         const lightsaber = options.lightsaber || 'blue';
+        
         this.set('lightsaber', lightsaber);
       }
 
@@ -2000,114 +2011,49 @@ Other style guides:
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
-
+**[Back to top](#table-of-contents)**
 
 ## Events
 
-  - [24.1](#24.1) <a name='24.1'></a> When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+  - [24.1](#24.1) <a name='24.1'></a> When attaching data payloads to events (whether DOM events or something more proprietary), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
 
     ```javascript
-    // bad
+    // Bad.
     $(this).trigger('listingUpdated', listing.id);
 
     ...
 
     $(this).on('listingUpdated', function(e, listingId) {
-      // do something with listingId
+    
+      // Do something with listingId.
     });
     ```
 
-    prefer:
+    Prefer:
 
     ```javascript
-    // good
-    $(this).trigger('listingUpdated', { listingId: listing.id });
+    // Good.
+    $(this).trigger('listingUpdated', {listingId: listing.id});
 
     ...
 
     $(this).on('listingUpdated', function(e, data) {
-      // do something with data.listingId
+    
+      // Do something with data.listingId.
     });
     ```
 
-  **[⬆ back to top](#table-of-contents)**
-
-
-## jQuery
-
-  - [25.1](#25.1) <a name='25.1'></a> Prefix jQuery object variables with a `$`.
-
-    ```javascript
-    // bad
-    const sidebar = $('.sidebar');
-
-    // good
-    const $sidebar = $('.sidebar');
-
-    // good
-    const $sidebarBtn = $('.sidebar-btn');
-    ```
-
-  - [25.2](#25.2) <a name='25.2'></a> Cache jQuery lookups.
-
-    ```javascript
-    // bad
-    function setSidebar() {
-      $('.sidebar').hide();
-
-      // ...stuff...
-
-      $('.sidebar').css({
-        'background-color': 'pink'
-      });
-    }
-
-    // good
-    function setSidebar() {
-      const $sidebar = $('.sidebar');
-      $sidebar.hide();
-
-      // ...stuff...
-
-      $sidebar.css({
-        'background-color': 'pink'
-      });
-    }
-    ```
-
-  - [25.3](#25.3) <a name='25.3'></a> For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
-  - [25.4](#25.4) <a name='25.4'></a> Use `find` with scoped jQuery object queries.
-
-    ```javascript
-    // bad
-    $('ul', '.sidebar').hide();
-
-    // bad
-    $('.sidebar').find('ul').hide();
-
-    // good
-    $('.sidebar ul').hide();
-
-    // good
-    $('.sidebar > ul').hide();
-
-    // good
-    $sidebar.find('ul').hide();
-    ```
-
-**[⬆ back to top](#table-of-contents)**
-
+  **[Back to top](#table-of-contents)**
 
 ## ECMAScript 5 Compatibility
 
   - [26.1](#26.1) <a name='26.1'></a> Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.io/es5-compat-table/).
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## ECMAScript 6 Styles
 
-  - [27.1](#27.1) <a name='27.1'></a> This is a collection of links to the various es6 features.
+  - [27.1](#27.1) <a name='27.1'></a> This is a collection of links to the various ES6 features.
 
 1. [Arrow Functions](#arrow-functions)
 1. [Classes](#constructors)
@@ -2123,11 +2069,11 @@ Other style guides:
 1. [Iterators and Generators](#iterators-and-generators)
 1. [Modules](#modules)
 
-**[⬆ back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## Testing
 
-  - [28.1](#28.1) <a name="28.1"></a> **Yup.**
+  - [28.1](#28.1) <a name="28.1"></a> **Yup**.
 
     ```javascript
     function () {
