@@ -55,6 +55,7 @@ Other style guides:
     + `null`;
     + `undefined`.
 
+
     ```javascript
     const foo = 1;
     
@@ -67,9 +68,10 @@ Other style guides:
     
   - [1.2](#1.2) <a name='1.2'></a> **Complex**: when you access a complex type you work on a reference to its value.
 
-    + `object`
-    + `array`
-    + `function`
+    + `object`;
+    + `array`;
+    + `function`.
+
 
     ```javascript
     const foo = [1, 2];
