@@ -32,18 +32,11 @@ Other style guides:
   1. [Naming Conventions](#naming-conventions)
   1. [Accessors](#accessors)
   1. [Events](#events)
-  1. [jQuery](#jquery)
   1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
   1. [ECMAScript 6 Styles](#ecmascript-6-styles)
   1. [Testing](#testing)
-  1. [Performance](#performance)
-  1. [Resources](#resources)
-  1. [In the Wild](#in-the-wild)
-  1. [Translation](#translation)
-  1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Chat With Us About JavaScript](#chat-with-us-about-javascript)
-  1. [Contributors](#contributors)
   1. [License](#license)
+  1. [Amendments](#amendments)
 
 ## Types
 
@@ -54,7 +47,6 @@ Other style guides:
     + `boolean`;
     + `null`;
     + `undefined`.
-
 
     ```javascript
     const foo = 1;
@@ -71,7 +63,6 @@ Other style guides:
     + `object`;
     + `array`;
     + `function`.
-
 
     ```javascript
     const foo = [1, 2];
