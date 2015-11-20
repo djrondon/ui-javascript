@@ -265,6 +265,31 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
       mayTheFourth: 4,
     };
     ```
+    
+  - [3.8](#3.8) <a name='3.8'></a> It's possible to inline and single-property object, an object shorthand, or an object destructuring.
+  
+  > Why? Under some cases, it's easier to read.
+   
+    ```javascript
+    // Bad.
+    const obj = {episodeOne: 1, twoJediWalkIntoACantina: 2, lukeSkywalker, episodeThree: 3,};
+    
+    // Good.
+    const obj = {lukeSkywalker, anakinSkywalker, darthVader,};
+    
+    // Also good.
+    const obj = {
+      lukeSkywalker,
+      anakinSkywalker,
+      darthVader,
+    };
+    
+    // Good.
+    const {lukeSkywalker, anakinSkywalker, darthVader,} = obj;
+    
+    // Good.
+    const obj = {aJedi: 'Luke Skywalker',};
+    ```
 
 **[Back to top](#table-of-contents)**
 
@@ -316,6 +341,22 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     ```javascript
     const foo = document.querySelectorAll('.foo');
     const nodes = Array.from(foo);
+    ```
+    
+  - [4.5](#4.5) <a name='4.5'></a> It's possible to inline an array when needed.
+    
+  > Why? Under some cases, it's easier to read.
+   
+    ```javascript
+    // Good.
+    const arr = ['Nefarian', 'Vaelastraz', 'Broodlord',];
+    
+    // Also good.
+    const arr = [
+      'Nefarian',
+      'Vaelastraz',
+      'Broodlord',
+    ];
     ```
 
 **[Back to top](#table-of-contents)**
