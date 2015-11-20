@@ -149,14 +149,14 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    const superman = {
-      default: {clark: 'kent'},
+    const hero = {
+      default: {sylvanas: 'windrunner'},
       private: true,
     };
 
     // Good.
-    const superman = {
-      defaults: {clark: 'kent'},
+    const hero = {
+      defaults: {sylvanas: 'windrunner'},
       hidden: true,
     };
     ```
@@ -165,13 +165,13 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    const superman = {class: 'alien'};
+    const sylvanas = {class: 'ranger'};
 
     // Bad.
-    const superman = {klass: 'alien'};
+    const sylvanas = {klass: 'ranger'};
 
     // Good.
-    const superman = {type: 'alien'};
+    const sylvanas = {type: 'ranger'};
     ```
 
   <a name="es6-computed-properties"></a>
@@ -188,7 +188,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     
     const obj = {
       id: 5,
-      name: 'San Francisco',
+      name: 'Dun Morogh',
     };
     obj[getKey('enabled')] = true;
 
@@ -196,7 +196,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     
     const obj = {
       id: 5,
-      name: 'San Francisco',
+      name: 'Dun Morogh',
       [getKey('enabled')]: true,
     };
     ```
@@ -228,13 +228,13 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   > Why? It is shorter to write and descriptive.
 
     ```javascript
-    const lukeSkywalker = 'Luke Skywalker';
+    const thrall = 'Thrall';
 
     // Bad.
-    const obj = {lukeSkywalker: lukeSkywalker};
+    const obj = {thrall: thrall};
 
     // Good.
-    const obj = {lukeSkywalker};
+    const obj = {thrall};
     ```
 
   - [3.7](#3.7) <a name='3.7'></a> Group your shorthand properties at the beginning of your object declaration.
@@ -242,27 +242,27 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   > Why? It's easier to tell which properties are using the shorthand.
 
     ```javascript
-    const anakinSkywalker = 'Anakin Skywalker';
-    const lukeSkywalker = 'Luke Skywalker';
+    const thrall = 'Thrall';
+    const malfurion = 'Malfurion';
 
     // Bad.
     const obj = {
-      episodeOne: 1,
-      twoJediWalkIntoACantina: 2,
-      lukeSkywalker,
-      episodeThree: 3,
-      mayTheFourth: 4,
-      anakinSkywalker,
+      region: 'Kalimdor',
+      twoHeroesWalkIntoDarnassus: 2,
+      illidan,
+      artefact: 'Gul\'dan Crane',
+      theDemonInside: true,
+      stormrage,
     };
 
     // Good.
     const obj = {
-      lukeSkywalker,
-      anakinSkywalker,
-      episodeOne: 1,
-      twoJediWalkIntoACantina: 2,
-      episodeThree: 3,
-      mayTheFourth: 4,
+      illidan,
+      stormrage,
+      region: 'Kalimdor',
+      twoHeroesWalkIntoDarnassus: 2,
+      artefact: 'Gul\'dan Crane',
+      theDemonInside: true,
     };
     ```
     
@@ -272,23 +272,23 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
    
     ```javascript
     // Bad.
-    const obj = {episodeOne: 1, twoJediWalkIntoACantina: 2, lukeSkywalker, episodeThree: 3,};
+    const obj = {region: 'Kalimdor', twoHeroesWalkIntoDarnassus: 2, artefact: 'Gul\'dan Crane',};
     
     // Good.
-    const obj = {lukeSkywalker, anakinSkywalker, darthVader,};
+    const obj = {illidan, stormrage, medhiv};
     
     // Also good.
     const obj = {
-      lukeSkywalker,
-      anakinSkywalker,
-      darthVader,
+      illidan,
+      stormrage,
+      medhiv,
     };
     
     // Good.
-    const {lukeSkywalker, anakinSkywalker, darthVader,} = obj;
+    const {illidan, stormrage, medhiv,} = obj;
     
     // Good.
-    const obj = {aJedi: 'Luke Skywalker',};
+    const obj = {aShaman: 'Thrall',};
     ```
 
 **[Back to top](#table-of-contents)**
@@ -439,10 +439,10 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    const name = "Capt. Janeway";
+    const name = "Uther the Lightbringer";
 
     // Good.
-    const name = 'Capt. Janeway';
+    const name = 'Uther the Lightbringer';
     ```
 
   - [6.2](#6.2) <a name='6.2'></a> Strings longer than 100 characters should be written across multiple lines using string concatenation.
@@ -450,18 +450,19 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
+    const errorMessage = 'Jaina Proudmoore is the founder and former Lady of Theramore Isle (as well as its only leader during its brief existence), the Alliance's major port in southern Kalimdor.';
 
     // Bad.
-    const errorMessage = 'This is a super long error that was thrown because \
-    of Batman. When you stop to think about how Batman had anything to do \
-    with this, you would get nowhere \
-    fast.';
+    const errorMessage = 'Jaina Proudmoore is the founder and former\
+      Lady of Theramore Isle (as well as its only\
+      leader during its brief existence), the Alliance's\
+      major port in southern Kalimdor.';
 
     // Good.
-    const errorMessage = 'This is a super long error that was thrown because ' +
-      'of Batman. When you stop to think about how Batman had anything to do ' +
-      'with this, you would get nowhere fast.';
+    const errorMessage = 'Jaina Proudmoore is the founder and former ' +
+      'Lady of Theramore Isle (as well as its only ' +
+      'leader during its brief existence), the Alliance's ' +
+      'major port in southern Kalimdor.';
     ```
 
   <a name="es6-template-literals"></a>
@@ -489,7 +490,6 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   - [6.5](#6.5) <a name='6.5'></a> Never use `eval()` on a string, it opens too many vulnerabilities.
 
 **[Back to top](#table-of-contents)**
-
 
 ## Functions
 
@@ -803,24 +803,24 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     ```javascript
     // Bad.
     
-    Jedi.prototype.jump = function() {
+    Troll.prototype.jump = function() {
       this.jumping = true;
       
       return true;
     };
 
-    Jedi.prototype.setHeight = function(height) {
+    Troll.prototype.setHeight = function(height) {
       this.height = height;
     };
 
-    const luke = new Jedi();
+    const volJin = new Throll();
     
-    luke.jump(); // true
-    luke.setHeight(20); // undefined
+    volJin.jump(); // true
+    volJin.setHeight(20); // undefined
 
     // Good.
     
-    class Jedi {
+    class Throll {
       jump() {
         this.jumping = true;
         
@@ -834,16 +834,16 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
       }
     }
 
-    const luke = new Jedi();
+    const volJin = new Throll();
 
-    luke.jump()
+    volJin.jump()
       .setHeight(20);
     ```
 
   - [9.4](#9.4) <a name='9.4'></a> It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
 
     ```javascript
-    class Jedi {
+    class Throll {
       constructor(options = {}) {
         this.name = options.name || 'no name';
       }
@@ -853,7 +853,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
       }
 
       toString() {
-        return `Jedi - ${this.getName()}`;
+        return `Throll - ${this.getName()}`;
       }
     }
     ```
@@ -962,31 +962,31 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   - [12.1](#12.1) <a name='12.1'></a> Use dot notation when accessing properties.
 
     ```javascript
-    const luke = {
-      jedi: true,
-      age: 28,
+    const volJin = {
+      troll: true,
+      age: 78,
     };
 
     // Bad.
-    const isJedi = luke['jedi'];
+    const isTroll = volJin['troll'];
 
     // Good.
-    const isJedi = luke.jedi;
+    const isTroll = volJin.troll;
     ```
 
   - [12.2](#12.2) <a name='12.2'></a> Use subscript notation `[]` when accessing properties with a variable.
 
     ```javascript
-    const luke = {
-      jedi: true,
-      age: 28,
+    const volJin = {
+      troll: true,
+      age: 78,
     };
 
     function getProp(prop) {
-      return luke[prop];
+      return volJin[prop];
     }
 
-    const isJedi = getProp('jedi');
+    const isTroll = getProp('troll');
     ```
 
 **[Back to top](#table-of-contents)**
@@ -997,10 +997,10 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    superPower = new SuperPower();
+    frostbolt = new Frostbolt();
 
     // Good.
-    const superPower = new SuperPower();
+    const frostbolt = new Frostbolt();
     ```
 
   - [13.2](#13.2) <a name='13.2'></a> Use one `const` declaration per variable.
@@ -1010,21 +1010,21 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     ```javascript
     // Bad.
     const items = getItems(),
-        goSportsTeam = true,
-        dragonball = 'z';
+      lordaeronArmy = true,
+      footmans = 4500;
 
     // Bad.
     
     // Compare to above, and try to spot the mistake.
     const items = getItems(),
-        goSportsTeam = true;
-        dragonball = 'z';
+      lordaeronArmy = true;
+      footmans = 4500;
 
     // Good.
     
     const items = getItems();
-    const goSportsTeam = true;
-    const dragonball = 'z';
+    const lordaeronArmy = true;
+    const footmans = 4500
     ```
 
   - [13.3](#13.3) <a name='13.3'></a> Group all your `const`s and then group all your `let`s.
@@ -1033,9 +1033,9 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    let i, len, dragonball,
-        items = getItems(),
-        goSportsTeam = true;
+    let i, len, lordaeron,
+      items = getItems(),
+      lordaeronArmy = true;
 
     // Bad.
     
@@ -1043,18 +1043,18 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     
     const items = getItems();
     
-    let dragonball;
+    let lordaeron;
     
-    const goSportsTeam = true;
+    const lordaeronArmy = true;
     
     let len;
 
     // Good.
     
-    const goSportsTeam = true;
+    const lordaeronArmy = true;
     const items = getItems();
     
-    let dragonball;
+    let lordaeron;
     let i;
     let length;
     ```
@@ -1073,7 +1073,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
       const name = getName();
 
-      if ('test' === name) {
+      if (name === 'test') {
         return false;
       }
 
@@ -1170,10 +1170,10 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
       console.log(named); // undefined
 
       named(); // TypeError named is not a function.
-      superPower(); // ReferenceError superPower is not defined.
+      frostbolt(); // ReferenceError superPower is not defined.
 
-      var named = function superPower() {
-        console.log('Flying');
+      var named = function frostbolt() {
+        console.log('Pew pew!');
       };
     }
 
@@ -1194,10 +1194,10 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     function example() {
-      superPower(); // Flying
+      frostbolt(); // Flying
 
-      function superPower() {
-        console.log('Flying');
+      function frostbolt() {
+        console.log('Pew pew!');
       }
     }
     ```
@@ -1230,7 +1230,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    if ('' !== name) {
+    if (name !== '') {
     
       // ...stuff...
     }
@@ -1242,7 +1242,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     }
 
     // Bad.
-    if (0 < collection.length) {
+    if (collection.length > 0) {
     
       // ...stuff...
     }
@@ -1340,7 +1340,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
 ## Comments
 
-  - [17.1](#17.1) <a name='17.1'></a> Use /** ... */ for multi-line comments. Include a description, specify types and values for all parameters and return values.
+  - [17.1](#17.1) <a name='17.1'></a> Use `/** ... */` for multi-line comments. Include a description, specify types and values for all parameters and return values.
 
     ```javascript
     // Bad.
@@ -1419,7 +1419,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   - [17.4](#17.4) <a name='17.4'></a> Use `// FIXME:` to annotate problems.
 
     ```javascript
-    class Calculator extends Abacus {
+    class Thrall extends Durotan {
       constructor() {
         super();
 
@@ -1432,7 +1432,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   - [17.5](#17.5) <a name='17.5'></a> Use `// TODO:` to annotate solutions to problems.
 
     ```javascript
-    class Calculator extends Abacus {
+    class Thrall extends Durotan {
       constructor() {
         super();
 
@@ -1497,15 +1497,15 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     }
 
     // Bad.
-    dog.set('attr',{
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
+    arthas.set('attr',{
+      race: 'undead',
+      weapon: 'Frostmourne',
     });
 
     // Good.
-    dog.set('attr', {
-      age: '1 year',
-      breed: 'Bernese Mountain Dog',
+    arthas.set('attr', {
+      race: 'undead',
+      weapon: 'Frostmourne',
     });
     ```
 
@@ -1513,23 +1513,23 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    if(isJedi) {
+    if(isTroll) {
       fight ();
     }
 
     // Good.
-    if (isJedi) {
+    if (isTroll) {
       fight();
     }
 
     // Bad.
     function fight () {
-      console.log ('Swooosh!');
+      console.log ('Pew pew!');
     }
 
     // Good.
     function fight() {
-      console.log('Swooosh!');
+      console.log('Pew pew!');
     }
     ```
 
@@ -1599,18 +1599,18 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     // Bad.
     const item = document.getElementById('item').doSomething1().getElement1()
-        .doSomething2()
-        .doSomething3()
-        .getElement2();
+      .doSomething2()
+      .doSomething3()
+      .getElement2();
 
     // Good.
     const item = document
-        .getElementById('item')
-          .doSomething1()
-        .getElement1()
-          .doSomething2()
-          .doSomething3()
-        .getElement2();
+      .getElementById('item')
+        .doSomething1()
+      .getElement1()
+        .doSomething2()
+        .doSomething3()
+      .getElement2();
     ```
 
   - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement. But don't do it on a object or an array.
@@ -1784,18 +1784,18 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     // Bad.
     const hero = {
-        firstName: 'Ada'
-      , lastName: 'Lovelace'
-      , birthYear: 1815
-      , superPower: 'computers'
+        firstName: 'Arthas'
+      , lastName: 'Menethil'
+      , birthYear: 785
+      , skill: 'Death Coil'
     };
 
     // Good.
     const hero = {
-      firstName: 'Ada',
-      lastName: 'Lovelace',
-      birthYear: 1815,
-      superPower: 'computers',
+      firstName: 'Arthas',
+      lastName: 'Menethil',
+      birthYear: 785,
+      superPower: 'Death Coil',
     };
     ```
 
@@ -1806,41 +1806,41 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     ```javascript
     // Bad: git diff without trailing comma.
     const hero = {
-         firstName: 'Florence',
-    -    lastName: 'Nightingale'
-    +    lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb graph', 'modern nursing']
+         firstName: 'Illidan',
+    -    lastName: 'Stormrag'
+    +    lastName: 'Stormrage',
+    +    skills: ['Immolation', 'Mana Burn']
     };
 
     // Good: git diff with trailing comma.
     const hero = {
-         firstName: 'Florence',
-         lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb chart', 'modern nursing'],
+         firstName: 'Illidan',
+         lastName: 'Stormrage',
+    +    skills: ['Immolation', 'Mana Burn'],
     };
 
     // Bad.
     
     const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully'
+      firstName: 'Kael\'Thas',
+      lastName: 'Sunstrider'
     };
 
     const heroes = [
-      'Batman',
-      'Superman'
+      'Kael\'Thas',
+      'Illidan'
     ];
 
     // Good.
     
     const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully',
+      firstName: 'Kael\'Thas',
+      lastName: 'Sunstrider',
     };
 
     const heroes = [
-      'Batman',
-      'Superman',
+      'Kael\'Thas',
+      'Illidan',
     ];
     ```
 
@@ -1853,21 +1853,21 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     ```javascript
     // Bad.
     (function() {
-      const name = 'Skywalker'
+      const name = 'Thrall'
       
       return name
     })()
 
     // Good.
     (() => {
-      const name = 'Skywalker';
+      const name = 'Thrall';
       
       return name;
     })();
 
     // Good (guards against the function becoming an argument when two files with IIFEs are concatenated).
     ;(() => {
-      const name = 'Skywalker';
+      const name = 'Thrall';
       
       return name;
     })();
@@ -2018,11 +2018,11 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     ```javascript
     // Bad.
     
-    this.__firstName__ = 'Panda';
-    this.firstName_ = 'Panda';
+    this.__firstName__ = 'Pandaren';
+    this.firstName_ = 'Pandaren';
 
     // Good.
-    this._firstName = 'Panda';
+    this._firstName = 'Pandaren';
     ```
 
   - [22.5](#22.5) <a name='22.5'></a> Don't save references to `this`. Use arrow functions or Function#bind.
@@ -2135,11 +2135,11 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   - [23.4](#23.4) <a name='23.4'></a> It's okay to create get() and set() functions, but be consistent.
 
     ```javascript
-    class Jedi {
+    class NightElf {
       constructor(options = {}) {
-        const lightsaber = options.lightsaber || 'blue';
+        const arrows = options.arrows || 30;
         
-        this.set('lightsaber', lightsaber);
+        this.set('arrows', arrows);
       }
 
       set(key, val) {
@@ -2156,35 +2156,9 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
 ## Events
 
-  - [24.1](#24.1) <a name='24.1'></a> When attaching data payloads to events (whether DOM events or something more proprietary), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+  - [24.1](#24.1) <a name='24.1'></a> When attaching data payloads to events (whether DOM events or something more proprietary), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event.
 
-    ```javascript
-    // Bad.
-    $(this).trigger('listingUpdated', listing.id);
-
-    ...
-
-    $(this).on('listingUpdated', function(e, listingId) {
-    
-      // Do something with listingId.
-    });
-    ```
-
-    Prefer:
-
-    ```javascript
-    // Good.
-    $(this).trigger('listingUpdated', {listingId: listing.id});
-
-    ...
-
-    $(this).on('listingUpdated', function(e, data) {
-    
-      // Do something with data.listingId.
-    });
-    ```
-
-  **[Back to top](#table-of-contents)**
+**[Back to top](#table-of-contents)**
 
 ## ECMAScript 5 Compatibility
 
