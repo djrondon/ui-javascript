@@ -3,7 +3,7 @@
 > Efficient and readable React.
 
 Other style guides:
- - [UI JavaScript](..)
+ - [UI JavaScript](https://github.com/mapleinside/ui-javascript)
  - [CSS & Sass](https://github.com/mapleinside/css)
 
 ## License
