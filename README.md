@@ -165,13 +165,13 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    const sylvanas = {class: 'ranger'};
+    const sylvanas = {class: 'ranger',};
 
     // Bad.
-    const sylvanas = {klass: 'ranger'};
+    const sylvanas = {klass: 'ranger',};
 
     // Good.
-    const sylvanas = {type: 'ranger'};
+    const sylvanas = {type: 'ranger',};
     ```
 
   <a name="es6-computed-properties"></a>
@@ -231,7 +231,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     const thrall = 'Thrall';
 
     // Bad.
-    const obj = {thrall: thrall};
+    const obj = {thrall: thrall,};
 
     // Good.
     const obj = {thrall};
@@ -450,18 +450,18 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    const errorMessage = 'Jaina Proudmoore is the founder and former Lady of Theramore Isle (as well as its only leader during its brief existence), the Alliance's major port in southern Kalimdor.';
+    const errorMessage = 'Jaina Proudmoore is the founder and former Lady of Theramore Isle (as well as its only leader during its brief existence), the Alliance\'s major port in southern Kalimdor.';
 
     // Bad.
     const errorMessage = 'Jaina Proudmoore is the founder and former\
       Lady of Theramore Isle (as well as its only\
-      leader during its brief existence), the Alliance's\
+      leader during its brief existence), the Alliance\'s\
       major port in southern Kalimdor.';
 
     // Good.
     const errorMessage = 'Jaina Proudmoore is the founder and former ' +
       'Lady of Theramore Isle (as well as its only ' +
-      'leader during its brief existence), the Alliance's ' +
+      'leader during its brief existence), the Alliance\'s ' +
       'major port in southern Kalimdor.';
     ```
 
