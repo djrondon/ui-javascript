@@ -81,23 +81,23 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
   - [2.1](#2.1) <a name="2.1"></a> Use `const` for all of your references; avoid using `var`.
 
-  > Why? This ensures that you can't reassign your references, which can lead to bugs and difficult to comprehend code.
-
-  ```javascript
-  // Bad.
-  
-  var a = 1;
-  var b = 2;
-  
-  // Good.
-  
-  const a = 1;
-  const b = 2;
-  ```
+    > Why? This ensures that you can't reassign your references, which can lead to bugs and difficult to comprehend code.
+    
+    ```javascript
+    // Bad.
+    
+    var a = 1;
+    var b = 2;
+    
+    // Good.
+    
+    const a = 1;
+    const b = 2;
+    ```
 
   - [2.2](#2.2) <a name="2.2"></a> If you must reassign references, use `let` instead of `var`.
 
-  > Why? `let` is block-scoped rather than function-scoped like `var`.
+    > Why? `let` is block-scoped rather than function-scoped like `var`.
 
     ```javascript
     // Bad.
@@ -177,7 +177,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   <a name="es6-computed-properties"></a>
   - [3.4](#3.4) <a name="3.4"></a> Use computed property names when creating objects with dynamic property names.
 
-  > Why? They allow you to define all the properties of an object in one place.
+    > Why? They allow you to define all the properties of an object in one place.
 
     ```javascript
     function getKey(k) {
