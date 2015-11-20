@@ -83,17 +83,17 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
   > Why? This ensures that you can't reassign your references, which can lead to bugs and difficult to comprehend code.
 
-    ```javascript
-    // Bad.
-    
-    var a = 1;
-    var b = 2;
-
-    // Good.
-    
-    const a = 1;
-    const b = 2;
-    ```
+  ```javascript
+  // Bad.
+  
+  var a = 1;
+  var b = 2;
+  
+  // Good.
+  
+  const a = 1;
+  const b = 2;
+  ```
 
   - [2.2](#2.2) <a name="2.2"></a> If you must reassign references, use `let` instead of `var`.
 
