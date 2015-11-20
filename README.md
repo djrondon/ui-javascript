@@ -186,7 +186,7 @@ Other style guides:
     
     const obj = {
       id: 5,
-      name: 'San Francisco'
+      name: 'San Francisco',
     };
     obj[getKey('enabled')] = true;
 
@@ -195,7 +195,7 @@ Other style guides:
     const obj = {
       id: 5,
       name: 'San Francisco',
-      [getKey('enabled')]: true
+      [getKey('enabled')]: true,
     };
     ```
 
@@ -208,7 +208,7 @@ Other style guides:
       value: 1,
       addValue: function(value) {
         return atom.value + value;
-      }
+      },
     };
 
     // Good.
@@ -216,7 +216,7 @@ Other style guides:
       value: 1,
       addValue(value) {
         return atom.value + value;
-      }
+      },
     };
     ```
 
@@ -250,7 +250,7 @@ Other style guides:
       lukeSkywalker,
       episodeThree: 3,
       mayTheFourth: 4,
-      anakinSkywalker
+      anakinSkywalker,
     };
 
     // Good.
@@ -260,7 +260,7 @@ Other style guides:
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
       episodeThree: 3,
-      mayTheFourth: 4
+      mayTheFourth: 4,
     };
     ```
 
@@ -922,7 +922,7 @@ Other style guides:
     ```javascript
     const luke = {
       jedi: true,
-      age: 28
+      age: 28,
     };
 
     // Bad.
@@ -937,7 +937,7 @@ Other style guides:
     ```javascript
     const luke = {
       jedi: true,
-      age: 28
+      age: 28,
     };
 
     function getProp(prop) {
@@ -1178,6 +1178,7 @@ Other style guides:
 
     ```javascript
     if ([0]) {
+    
       // true
       // An array is an object, objects evaluate to true.
     }
@@ -1188,21 +1189,25 @@ Other style guides:
     ```javascript
     // Bad.
     if ('' !== name) {
+    
       // ...stuff...
     }
 
     // Good.
     if (name) {
+    
       // ...stuff...
     }
 
     // Bad.
     if (0 < collection.length) {
+    
       // ...stuff...
     }
 
     // Good.
     if (collection.length) {
+    
       // ...stuff...
     }
     ```
@@ -1263,36 +1268,36 @@ Other style guides:
 
 ## Comments
 
-  - [17.1](#17.1) <a name='17.1'></a> Use `//` for multi-line comments. Include a description, specify types and values for all parameters and return values.
+  - [17.1](#17.1) <a name='17.1'></a> Use /** ... */ for multi-line comments. Include a description, specify types and values for all parameters and return values.
 
     ```javascript
     // Bad.
     
+    // make() returns a new element
+    // based on the passed in tag name.
+    //
+    // @param {String} tag
+    // @return {Element} element
+    function make(tag) {
+    
+      // ...stuff...
+    
+      return element;
+    }
+    
+    // Good.
+    
     /**
      * make() returns a new element
-     * based on the passed in tag name
+     * based on the passed in tag name.
      *
      * @param {String} tag
      * @return {Element} element
      */
     function make(tag) {
-
-      // ...stuff...
-
-      return element;
-    }
-
-    // Good.
     
-    // make() returns a new element
-    // based on the passed in tag name
-    //
-    // @param {String} tag
-    // @return {Element} element
-    function make(tag) {
-
       // ...stuff...
-
+    
       return element;
     }
     ```
@@ -1404,17 +1409,17 @@ Other style guides:
     // Bad.
     dog.set('attr',{
       age: '1 year',
-      breed: 'Bernese Mountain Dog'
+      breed: 'Bernese Mountain Dog',
     });
 
     // Good.
     dog.set('attr', {
       age: '1 year',
-      breed: 'Bernese Mountain Dog'
+      breed: 'Bernese Mountain Dog',
     });
     ```
 
-  - [18.3](#18.3) <a name='18.3'></a> Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space before the argument list in function calls and declarations.
+  - [18.3](#18.3) <a name='18.3'></a> Place 1 space before the opening parenthesis in control statements (`if`, `while`, etc.). Place no space before the argument list in function calls and declarations.
 
     ```javascript
     // Bad.
@@ -1480,51 +1485,56 @@ Other style guides:
 
     ```javascript
     // Bad.
-    $('#items').find('.selected').highlight().end().find('.open').updateCount();
+    document.getElementById('items').method1().getElement1().method2().getElement2().method3();
 
     // Bad.
-    $('#items').
-      find('.selected').
-        highlight().
-        end().
-      find('.open').
-        updateCount();
+    document.
+      getElementById('item').
+        doSomething1().
+      getElement1().
+        doSomething2().
+        doSomething3().
+      getElement2().
+        doSomething4();
 
     // Good.
-    $('#items')
-      .find('.selected')
-        .highlight()
-        .end()
-      .find('.open')
-        .updateCount();
+    document
+      .getElementById('item')
+        .doSomething1()
+      .getElement1()
+        .doSomething2()
+        .doSomething3()
+      .getElement2()
+        .doSomething4();
 
     // Bad.
-    const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
-        .attr('width', (radius + margin) * 2).append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-        .call(tron.led);
+    const item = document.getElementById('item').doSomething1().getElement1()
+        .doSomething2()
+        .doSomething3()
+        .getElement2();
 
     // Good.
-    const leds = stage.selectAll('.led')
-        .data(data)
-      .enter().append('svg:svg')
-        .classed('led', true)
-        .attr('width', (radius + margin) * 2)
-      .append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-        .call(tron.led);
+    const item = document
+        .getElementById('item')
+          .doSomething1()
+        .getElement1()
+          .doSomething2()
+          .doSomething3()
+        .getElement2();
     ```
 
   - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement. But don't do it on a object or an array.
 
     ```javascript
     // Bad.
+    
     if (foo) {
       return bar;
     }
     return baz;
 
     // Good.
+    
     if (foo) {
       return bar;
     }
@@ -1532,6 +1542,7 @@ Other style guides:
     return baz;
 
     // Bad.
+    
     const obj = {
       foo() {
       },
@@ -1541,6 +1552,7 @@ Other style guides:
     return obj;
 
     // Bad.
+    
     const obj = {
       foo() {
       },
@@ -1552,6 +1564,7 @@ Other style guides:
     return obj;
     
     // Good.
+    
     const obj = {
       foo() {
       },
@@ -1562,6 +1575,7 @@ Other style guides:
     return obj;
 
     // Bad.
+    
     const arr = [
       function foo() {
       },
@@ -1571,6 +1585,7 @@ Other style guides:
     return arr;
 
     // Good.
+    
     const arr = [
       function foo() {
       },
@@ -1632,7 +1647,7 @@ Other style guides:
     const story = [
       once,
       upon,
-      aTime
+      aTime,
     ];
 
     // Bad.
@@ -1648,7 +1663,7 @@ Other style guides:
       firstName: 'Ada',
       lastName: 'Lovelace',
       birthYear: 1815,
-      superPower: 'computers'
+      superPower: 'computers',
     };
     ```
 
@@ -1701,7 +1716,7 @@ Other style guides:
 
 ## Semicolons
 
-  - [20.1](#20.1) <a name='20.1'></a> **Yup.**
+  - [20.1](#20.1) <a name='20.1'></a> **Yup**.
 
     ```javascript
     // Bad.
@@ -1836,6 +1851,7 @@ Other style guides:
     // Good.
     
     const thisIsMyObject = {};
+    
     function thisIsMyFunction() {}
     ```
 
@@ -1941,12 +1957,12 @@ Other style guides:
   - [22.8](#22.8) <a name='22.8'></a> Use PascalCase when you export a singleton/function library/bare object.
 
     ```javascript
-    const AirbnbStyleGuide = {
+    const MapleInsideStyleGuide = {
       es6: {
       }
     };
 
-    export default AirbnbStyleGuide;
+    export default MapleInsideStyleGuide;
     ```
 
 **[Back to top](#table-of-contents)**
