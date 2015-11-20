@@ -333,7 +333,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     }
 
     // Good.
-    const itemsCopy = [...items];
+    const itemsCopy = [...items,];
     ```
     
   - [4.4](#4.4) <a name="4.4"></a> To convert an array-like object to an array, use Array#from.
@@ -392,7 +392,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   - [5.2](#5.2) <a name="5.2"></a> Use array destructuring.
 
     ```javascript
-    const arr = [1, 2, 3, 4];
+    const arr = [1, 2, 3, 4,];
 
     // Bad.
     
@@ -400,7 +400,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     const second = arr[1];
 
     // Good.
-    const [first, second] = arr;
+    const [first, second,] = arr;
     ```
 
   - [5.3](#5.3) <a name="5.3"></a> Use object destructuring for multiple return values, not array destructuring.
@@ -413,22 +413,22 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     function processInput(input) {
     
       // Then a miracle occurs.
-      return [left, right, top, bottom];
+      return [left, right, top, bottom,];
     }
 
     // The caller needs to think about the order of return data.
-    const [left, __, top] = processInput(input);
+    const [left, __, top,] = processInput(input);
 
     // Good.
     
     function processInput(input) {
     
       // Then a miracle occurs.
-      return {left, right, top, bottom};
+      return {left, right, top, bottom,};
     }
 
     // The caller selects only the data they need.
-    const {left, right} = processInput(input);
+    const {left, right,} = processInput(input);
     ```
 
 **[Back to top](#table-of-contents)**
@@ -478,7 +478,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     // Bad.
     function sayHi(name) {
-      return ['How are you, ', name, '?'].join();
+      return ['How are you, ', name, '?',].join();
     }
 
     // Good.
@@ -744,7 +744,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     // Bad.
     
     function Queue(contents = []) {
-      this._queue = [...contents];
+      this._queue = [...contents,];
     }
     
     Queue.prototype.pop = function() {
@@ -758,7 +758,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     // Good.
     class Queue {
       constructor(contents = []) {
-        this._queue = [...contents];
+        this._queue = [...contents,];
       }
       
       pop() {
@@ -813,14 +813,14 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
       this.height = height;
     };
 
-    const volJin = new Throll();
+    const volJin = new Troll();
     
     volJin.jump(); // true
     volJin.setHeight(20); // undefined
 
     // Good.
     
-    class Throll {
+    class Troll {
       jump() {
         this.jumping = true;
         
@@ -834,7 +834,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
       }
     }
 
-    const volJin = new Throll();
+    const volJin = new Troll();
 
     volJin.jump()
       .setHeight(20);
@@ -843,7 +843,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
   - [9.4](#9.4) <a name="9.4"></a> It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
 
     ```javascript
-    class Throll {
+    class Troll {
       constructor(options = {}) {
         this.name = options.name || 'no name';
       }
@@ -853,7 +853,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
       }
 
       toString() {
-        return `Throll - ${this.getName()}`;
+        return `Troll - ${this.getName()}`;
       }
     }
     ```
@@ -925,7 +925,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side-effects.
 
     ```javascript
-    const numbers = [1, 2, 3, 4, 5];
+    const numbers = [1, 2, 3, 4, 5,];
 
     // Bad.
     
