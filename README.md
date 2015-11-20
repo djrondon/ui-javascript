@@ -242,8 +242,8 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     > Why? It's easier to tell which properties are using the shorthand.
 
     ```javascript
-    const thrall = 'Thrall';
-    const malfurion = 'Malfurion';
+    const illidan = 'Illidan';
+    const stormrage = 'Stormrage';
 
     // Bad.
     const obj = {
