@@ -234,7 +234,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     const obj = {thrall: thrall,};
 
     // Good.
-    const obj = {thrall};
+    const obj = {thrall,};
     ```
 
   - [3.7](#3.7) <a name="3.7"></a> Group your shorthand properties at the beginning of your object declaration.
