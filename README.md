@@ -275,7 +275,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     const obj = {region: 'Kalimdor', twoHeroesWalkIntoDarnassus: 2, artefact: 'Gul\'dan Crane',};
     
     // Good.
-    const obj = {illidan, stormrage, medhiv};
+    const obj = {illidan, stormrage, medhiv,};
     
     // Also good.
     const obj = {
