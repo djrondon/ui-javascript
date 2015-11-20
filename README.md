@@ -6,6 +6,8 @@ Other style guides:
  - [React](react)
  - [CSS & Sass](https://github.com/mapleinside/css)
  
+This style guide is inspired by the very complete [Airbnb JavaScript style guide](https://github.com/airbnb/javascript).
+ 
 ## Table of Contents
 
   1. [Types](#types)
@@ -387,7 +389,6 @@ Other style guides:
     // The caller selects only the data they need.
     const {left, right} = processInput(input);
     ```
-
 
 **[Back to top](#table-of-contents)**
 
@@ -1211,8 +1212,38 @@ Other style guides:
       // ...stuff...
     }
     ```
+    
+  - [15.4](#15.4) <a name='15.4'></a> Do not use Yoda conditions.
+  
+  > Why? Historically, Yoda conditions were used to prevent programmer to assign a value by mistake, because you cannot assign to a literal value. But today, tooling has made us better programmers because tools will catch the mistaken use of `=` instead of `==`. The utility of the pattern doesn't outweigh the readability hit the code takes while using Yoda conditions.
+  
+    ```javascript
+    // Bad.
+    if ('Illidan' !== name) {
+    
+      // ...stuff...
+    }
+  
+    // Good.
+    if (name !== 'Illidan') {
+    
+      // ...stuff...
+    }
+  
+    // Bad.
+    if (5 < collection.length) {
+    
+      // ...stuff...
+    }
+  
+    // Good.
+    if (collection.length > 5) {
+    
+      // ...stuff...
+    }
+    ```
 
-  - [15.4](#15.4) <a name='15.4'></a> For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
+  - [15.5](#15.5) <a name='15.5'></a> For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
 
 **[Back to top](#table-of-contents)**
 
@@ -1367,6 +1398,24 @@ Other style guides:
         // TODO: total should be configurable by an options param.
         this.total = 0;
       }
+    }
+    ```
+    
+  - [17.6](#17.6) <a name='17.6'></a> A comment is an English sentence, and it should follows the corresponding grammar rules.
+  
+    ```javascript
+    // Bad.
+    
+    // i'm a comment but i don't follow grammar rules
+    class Thrall extends Durotan {
+      ...
+    }
+    
+    // Good.
+        
+    // Following grammar rules is my only way of life.
+    class Thrall extends Durotan {
+      ...
     }
     ```
 
@@ -1628,6 +1677,48 @@ Other style guides:
     }
     ```
 
+  - [18.9](#18.9) <a name='18.9'></a> Leave a blank line before `return`. But don't do it when it begins a block.
+  
+  > Why? To improve readability.
+  
+  ```javascript
+  // Bad.
+  function polishFrostmourne() {
+    const frostmourne = new Frostmourne();
+    return frostmourne.polish();
+  }
+  
+  // Good.
+  function polishFrostmourne() {
+    const frostmourne = new Frostmourne();
+    
+    return frostmourne.polish();
+  }
+  
+  // Bad.
+  function polishFrostmourne() {
+    const frostmourne = new Frostmourne();
+    
+    if (!frostmourne.isSharp()) {
+    
+      return frostmourne.polish();
+    } else {
+    
+      return false;
+    }
+  }
+  
+  // Good.
+  function polishFrostmourne() {
+    const frostmourne = new Frostmourne();
+    
+    if (!frostmourne.isSharp()) {
+      return frostmourne.polish();
+    } else {
+      return false;
+    }
+  }
+  ```
 
 **[Back to top](#table-of-contents)**
 
