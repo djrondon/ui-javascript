@@ -1575,7 +1575,7 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
 
     ```javascript
     // Bad.
-    document.getElementById('items').method1().getElement1().method2().getElement2().method3();
+    document.getElementById('item').method1().getElement1().method2().getElement2().method3();
 
     // Bad.
     document.
