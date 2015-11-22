@@ -150,13 +150,13 @@ This style guide is inspired by the very complete [Airbnb JavaScript style guide
     ```javascript
     // Bad.
     const hero = {
-      default: {sylvanas: 'windrunner'},
+      default: {sylvanas: 'windrunner',},
       private: true,
     };
 
     // Good.
     const hero = {
-      defaults: {sylvanas: 'windrunner'},
+      defaults: {sylvanas: 'windrunner',},
       hidden: true,
     };
     ```
