@@ -22,291 +22,291 @@ Other style guides:
 
 ## Basic Rules
 
-  - Only include one React component per file;
-  - always use JSX syntax;
-  - do not use `React.createElement` unless you're initializing the app from a file that is not JSX.
+- Only include one React component per file;
+- always use JSX syntax;
+- do not use `React.createElement` unless you're initializing the app from a file that is not JSX.
 
 ## Class vs React.createClass
 
-  - Use `class extends React.Component`. Mixins are not an argument.
+Use `class extends React.Component`. Mixins are not an argument.
 
-  ```jsx
-  // Bad.
-  const Listing = React.createClass({
-    render() {
-      return <div />;
-    }
-  });
-  
-  // Good.
-  class Listing extends React.Component {
-    render() {
-      return <div />;
-    }
+```jsx
+// Bad.
+const Listing = React.createClass({
+  render() {
+    return <div />;
   }
-  ```
+});
+
+// Good.
+class Listing extends React.Component {
+  render() {
+    return <div />;
+  }
+}
+```
 
 ## Naming
 
-  - **Extensions**: use `.js` extension for React components as well;
-  - **Filename**: use PascalCase for filenames. E.g., `ReservationCard.js`;
-  - **Reference naming**: use PascalCase for React components and camelCase for their instances:
-  
-  ```jsx
-  // Bad.
-  const reservationCard = require('./ReservationCard');
-  
-  // Good.
-  const ReservationCard = require('./ReservationCard');
-  
-  // Bad.
-  const ReservationItem = <ReservationCard />;
-  
-  // Good.
-  const reservationItem = <ReservationCard />;
-  ```
+**Extensions**: use `.js` extension for React components as well.
+**Filename**: use PascalCase for filenames. E.g., `ReservationCard.js`.
+**Reference naming**: use PascalCase for React components and camelCase for their instances:
 
-  **Component naming**: use the filename as the component name. For example, `ReservationCard.js` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.js` as the filename and use the directory name as the component name:
-    
-  ```jsx
-  // Bad.
-  const Footer = require('./Footer/Footer.js');
+```jsx
+// Bad.
+const reservationCard = require('./ReservationCard');
+
+// Good.
+const ReservationCard = require('./ReservationCard');
+
+// Bad.
+const ReservationItem = <ReservationCard />;
+
+// Good.
+const reservationItem = <ReservationCard />;
+```
+
+**Component naming**: use the filename as the component name. For example, `ReservationCard.js` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.js` as the filename and use the directory name as the component name:
   
-  // Bad.
-  const Footer = require('./Footer/index.js');
-  
-  // Good.
-  const Footer = require('./Footer');
-  ```
+```jsx
+// Bad.
+const Footer = require('./Footer/Footer.js');
+
+// Bad.
+const Footer = require('./Footer/index.js');
+
+// Good.
+const Footer = require('./Footer');
+```
 
 ## Declaration
 
-  - Do not use displayName for naming components. Instead, name the component by reference.
+Do not use displayName for naming components. Instead, name the component by reference.
 
-  ```jsx
-  // Bad.
-  export default React.createClass({
-    displayName: 'ReservationCard',
-    ...
-  });
-  
-  // Good.
-  export default class ReservationCard extends React.Component {
-  }
-  ```
+```jsx
+// Bad.
+export default React.createClass({
+  displayName: 'ReservationCard',
+  ...
+});
+
+// Good.
+export default class ReservationCard extends React.Component {
+}
+```
 
 ## Alignment
 
-  - Follow these alignment styles for JSX syntax:
+Follow these alignment styles for JSX syntax:
 
-  ```jsx
-  // Bad.
-  <Foo superLongParam="bar"
-       anotherSuperLongParam="baz" />
-  
-  // Good.
-  <Foo
-    superLongParam="bar"
-    anotherSuperLongParam="baz"
-  />
-  
-  // If props fit in one line then keep it on the same line.
-  <Foo bar="bar" />
-  
-  // Children get indented normally.
-  <Foo
-    superLongParam="bar"
-    anotherSuperLongParam="baz"
-  >
-    <Spazz />
-  </Foo>
-  ```
+```jsx
+// Bad.
+<Foo superLongParam="bar"
+     anotherSuperLongParam="baz" />
+
+// Good.
+<Foo
+  superLongParam="bar"
+  anotherSuperLongParam="baz"
+/>
+
+// If props fit in one line then keep it on the same line.
+<Foo bar="bar" />
+
+// Children get indented normally.
+<Foo
+  superLongParam="bar"
+  anotherSuperLongParam="baz"
+>
+  <Spazz />
+</Foo>
+```
 
 ## Quotes
 
-  - Always use double quotes (`"`) for JSX attributes, but single quotes for all other JS.
+Always use double quotes (`"`) for JSX attributes, but single quotes for all other JS.
 
-  > Why? JSX attributes [can't contain escaped quotes](http://eslint.org/docs/rules/jsx-quotes), so double quotes make conjunctions like `"don't"` easier to type.
-  > Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.
+> Why? JSX attributes [can't contain escaped quotes](http://eslint.org/docs/rules/jsx-quotes), so double quotes make conjunctions like `"don't"` easier to type.
+> Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.
 
-  ```jsx
-  // Bad.
-  <Foo bar='bar' />
-  
-  // Good.
-  <Foo bar="bar" />
-  
-  // Bad.
-  <Foo style={{left: "20px"}} />
-  
-  // Good.
-  <Foo style={{left: '20px'}} />
-  ```
+```jsx
+// Bad.
+<Foo bar='bar' />
+
+// Good.
+<Foo bar="bar" />
+
+// Bad.
+<Foo style={{left: "20px"}} />
+
+// Good.
+<Foo style={{left: '20px'}} />
+```
 
 ## Spacing
 
-  - Always include a single space in your self-closing tag.
+Always include a single space in your self-closing tag:
   
-  ```jsx
-  // Bad.
-  <Foo/>
-  
-  // Very bad.
-  <Foo                 />
-  
-  // Bad.
-  <Foo
-   />
-  
-  // Good.
-  <Foo />
-  ```
+```jsx
+// Bad.
+<Foo/>
+
+// Very bad.
+<Foo                 />
+
+// Bad.
+<Foo
+ />
+
+// Good.
+<Foo />
+```
 
 ## Props
 
-  - Always use camelCase for prop names.
+Always use camelCase for prop names:
   
-  ```jsx
-  // Bad.
-  <Foo
-    UserName="hello"
-    phone_number={12345678}
-  />
-  
-  // Good.
-  <Foo
-    userName="hello"
-    phoneNumber={12345678}
-  />
-  ```
+```jsx
+// Bad.
+<Foo
+  UserName="hello"
+  phone_number={12345678}
+/>
+
+// Good.
+<Foo
+  userName="hello"
+  phoneNumber={12345678}
+/>
+```
 
 ## Parentheses
 
-  - Wrap JSX tags in parentheses when they span more than one line:
+Wrap JSX tags in parentheses when they span more than one line:
   
-  ```jsx
-  // Bad.
-  render() {
-    return <MyComponent className="long body" foo="bar">
-             <MyChild />
-           </MyComponent>;
-  }
+```jsx
+// Bad.
+render() {
+  return <MyComponent className="long body" foo="bar">
+           <MyChild />
+         </MyComponent>;
+}
+
+// Good.
+render() {
+  return (
+    <MyComponent className="long body" foo="bar">
+      <MyChild />
+    </MyComponent>
+  );
+}
+
+// Good, when single line.
+render() {
+  const body = <div>hello</div>;
   
-  // Good.
-  render() {
-    return (
-      <MyComponent className="long body" foo="bar">
-        <MyChild />
-      </MyComponent>
-    );
-  }
-  
-  // Good, when single line.
-  render() {
-    const body = <div>hello</div>;
-    
-    return <MyComponent>{body}</MyComponent>;
-  }
-  ```
+  return <MyComponent>{body}</MyComponent>;
+}
+```
 
 ## Tags
 
-  - Always self-close tags that have no children.
+Always self-close tags that have no children:
   
-  ```jsx
-  // Bad.
-  <Foo className="stuff"></Foo>
-  
-  // Good.
-  <Foo className="stuff" />
-  ```
+```jsx
+// Bad.
+<Foo className="stuff"></Foo>
 
-  - If your component has multi-line properties, close its tag on a new line.
+// Good.
+<Foo className="stuff" />
+```
+
+If your component has multi-line properties, close its tag on a new line:
   
-  ```jsx
-  // Bad.
-  <Foo
-    bar="bar"
-    baz="baz" />
-  
-  // Good.
-  <Foo
-    bar="bar"
-    baz="baz"
-  />
-  ```
+```jsx
+// Bad.
+<Foo
+  bar="bar"
+  baz="baz" />
+
+// Good.
+<Foo
+  bar="bar"
+  baz="baz"
+/>
+```
 
 ## Methods
 
-  - Do not use underscore prefix for internal methods of a React component.
+Do not use underscore prefix for internal methods of a React component:
   
-  ```jsx
-  // Bad.
-  React.createClass({
-    _onClickSubmit() {
-      ...
-    }
-  
+```jsx
+// Bad.
+React.createClass({
+  _onClickSubmit() {
     ...
-  });
-  
-  // Good.
-  class MyComponent extends React.Component {
-    onClickSubmit() {
-      ...
-    }
-  
+  }
+
+  ...
+});
+
+// Good.
+class MyComponent extends React.Component {
+  onClickSubmit() {
     ...
-  });
-  ```
+  }
+
+  ...
+});
+```
 
 ## Ordering
 
-  - Ordering for class extends React.Component:
-  
-  1. Static properties
-  1. Private properties
-  1. Public properties
-  1. constructor
-  1. Optional static methods
-  1. getChildContext
-  1. componentWillMount
-  1. componentDidMount
-  1. componentWillReceiveProps
-  1. shouldComponentUpdate
-  1. componentWillUpdate
-  1. componentDidUpdate
-  1. componentWillUnmount
-  1. *clickHandlers or eventHandlers* like onClickSubmit() or onChangeDescription()
-  1. *Getter methods for render* like getSelectReason() or getFooterContent()
-  1. *Optional render methods* like renderNavigation() or renderProfilePicture()
-  1. render
+Ordering for class extends React.Component:
 
-  - How to define propTypes, defaultProps, contextTypes, etc.
+1. Static properties
+1. Private properties
+1. Public properties
+1. constructor
+1. Optional static methods
+1. getChildContext
+1. componentWillMount
+1. componentDidMount
+1. componentWillReceiveProps
+1. shouldComponentUpdate
+1. componentWillUpdate
+1. componentDidUpdate
+1. componentWillUnmount
+1. *clickHandlers or eventHandlers* like onClickSubmit() or onChangeDescription()
+1. *Getter methods for render* like getSelectReason() or getFooterContent()
+1. *Optional render methods* like renderNavigation() or renderProfilePicture()
+1. render
 
-  ```jsx
-  import React, {Component, PropTypes} from 'react';
+How to define propTypes, defaultProps, contextTypes, etc.:
+
+```jsx
+import React, {Component, PropTypes} from 'react';
+
+export default class Link extends Component {
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
+    text: PropTypes.string,
+  };
   
-  export default class Link extends Component {
-    static propTypes = {
-      id: PropTypes.number.isRequired,
-      url: PropTypes.string.isRequired,
-      text: PropTypes.string,
-    };
-    
-    static defaultProps = {
-      text: 'Hello World',
-    };
-  
-    static methodsAreOk() {
-      return true;
-    }
-  
-    render() {
-      return <a href={this.props.url} data-id={this.props.id}>{this.props.text}</a>
-    }
+  static defaultProps = {
+    text: 'Hello World',
+  };
+
+  static methodsAreOk() {
+    return true;
   }
-  ```
+
+  render() {
+    return <a href={this.props.url} data-id={this.props.id}>{this.props.text}</a>
+  }
+}
+```
 
 **[Back to top](#table-of-contents)**
 
