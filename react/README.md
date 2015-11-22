@@ -30,7 +30,7 @@ Other style guides:
 
   - Use `class extends React.Component`. Mixins are not an argument.
 
-  ```javascript
+  ```jsx
   // Bad.
   const Listing = React.createClass({
     render() {
@@ -52,7 +52,7 @@ Other style guides:
   - **Filename**: use PascalCase for filenames. E.g., `ReservationCard.js`;
   - **Reference naming**: use PascalCase for React components and camelCase for their instances:
   
-  ```javascript
+  ```jsx
   // Bad.
   const reservationCard = require('./ReservationCard');
   
@@ -68,7 +68,7 @@ Other style guides:
 
   **Component naming**: use the filename as the component name. For example, `ReservationCard.js` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.js` as the filename and use the directory name as the component name:
     
-  ```javascript
+  ```jsx
   // Bad.
   const Footer = require('./Footer/Footer.js');
   
@@ -83,7 +83,7 @@ Other style guides:
 
   - Do not use displayName for naming components. Instead, name the component by reference.
 
-  ```javascript
+  ```jsx
   // Bad.
   export default React.createClass({
     displayName: 'ReservationCard',
@@ -99,7 +99,7 @@ Other style guides:
 
   - Follow these alignment styles for JSX syntax:
 
-  ```javascript
+  ```jsx
   // Bad.
   <Foo superLongParam="bar"
        anotherSuperLongParam="baz" />
@@ -129,7 +129,7 @@ Other style guides:
   > Why? JSX attributes [can't contain escaped quotes](http://eslint.org/docs/rules/jsx-quotes), so double quotes make conjunctions like `"don't"` easier to type.
   > Regular HTML attributes also typically use double quotes instead of single, so JSX attributes mirror this convention.
 
-  ```javascript
+  ```jsx
   // Bad.
   <Foo bar='bar' />
   
@@ -147,7 +147,7 @@ Other style guides:
 
   - Always include a single space in your self-closing tag.
   
-  ```javascript
+  ```jsx
   // Bad.
   <Foo/>
   
@@ -166,7 +166,7 @@ Other style guides:
 
   - Always use camelCase for prop names.
   
-  ```javascript
+  ```jsx
   // Bad.
   <Foo
     UserName="hello"
@@ -184,7 +184,7 @@ Other style guides:
 
   - Wrap JSX tags in parentheses when they span more than one line:
   
-  ```javascript
+  ```jsx
   // Bad.
   render() {
     return <MyComponent className="long body" foo="bar">
@@ -213,7 +213,7 @@ Other style guides:
 
   - Always self-close tags that have no children.
   
-  ```javascript
+  ```jsx
   // Bad.
   <Foo className="stuff"></Foo>
   
@@ -223,7 +223,7 @@ Other style guides:
 
   - If your component has multi-line properties, close its tag on a new line.
   
-  ```javascript
+  ```jsx
   // Bad.
   <Foo
     bar="bar"
@@ -240,7 +240,7 @@ Other style guides:
 
   - Do not use underscore prefix for internal methods of a React component.
   
-  ```javascript
+  ```jsx
   // Bad.
   React.createClass({
     _onClickSubmit() {
@@ -284,7 +284,7 @@ Other style guides:
 
   - How to define propTypes, defaultProps, contextTypes, etc.
 
-  ```javascript
+  ```jsx
   import React, {Component, PropTypes} from 'react';
   
   export default class Link extends Component {
